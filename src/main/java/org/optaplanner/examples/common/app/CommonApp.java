@@ -35,6 +35,7 @@ import org.optaplanner.examples.common.swingui.SolverAndPersistenceFrame;
 import org.optaplanner.persistence.common.api.domain.solution.SolutionFileIO;
 import org.optaplanner.swing.impl.SwingUncaughtExceptionHandler;
 import org.optaplanner.swing.impl.SwingUtils;
+import org.optaplanner.core.config.solver.termination.TerminationConfig;
 
 /**
  * @param <Solution_> the solution type, the class with the {@link PlanningSolution} annotation
@@ -78,6 +79,12 @@ public abstract class CommonApp<Solution_> extends LoggingMain {
     protected final String solverConfigResource;
     protected final String dataDirName;
     protected final String iconResource;
+
+    public SolverFactory<Solution_> solverFactory;  // добавил vvk 30.11.2021
+    public long minutesSpentLimit;					// добавил vvk 30.11.2021
+    public long secondsSpentLimit;					// добавил vvk 30.11.2021
+    public long unimprovedSecondsSpentLimit;		// добавил vvk 30.11.2021
+    public int  unimprovedStepCountLimit; 			// добавил vvk 30.11.2021  
 
     protected SolverAndPersistenceFrame<Solution_> solverAndPersistenceFrame;
     protected SolutionBusiness<Solution_, ?> solutionBusiness;
@@ -135,7 +142,26 @@ public abstract class CommonApp<Solution_> extends LoggingMain {
         solutionBusiness.updateDataDirs();
         return solutionBusiness;
     }
-
+/*
+    protected Solver<Solution_> createSolver() {
+        //        SolverFactory<Solution_> solverFactory = SolverFactory.createFromXmlResource(solverConfig);
+        //        return solverFactory.buildSolver();
+                solverFactory = SolverFactory.createFromXmlResource(solverConfig);
+                /*secondsSpentLimit = 60;
+                unimprovedSecondsSpentLimit = 2;
+                unimprovedStepCountLimit = 0;*/    	
+/*                if ((secondsSpentLimit > 0) || (unimprovedSecondsSpentLimit > 0) || (unimprovedStepCountLimit > 0)) {
+                    TerminationConfig terminationConfig = new TerminationConfig();
+                   
+                    //terminationConfig.setBestScoreFeasible(true);
+                    if (secondsSpentLimit > 0) 				terminationConfig.setSecondsSpentLimit(secondsSpentLimit);
+                    if (unimprovedSecondsSpentLimit > 0) 	terminationConfig.setUnimprovedSecondsSpentLimit(unimprovedSecondsSpentLimit);
+                    solverFactory.getSolverConfig().setTerminationConfig(terminationConfig);
+                                      
+                }    	 
+                return solverFactory.buildSolver();    	
+            }    
+*/
     protected SolverFactory<Solution_> createSolverFactory() {
         return SolverFactory.createFromXmlResource(solverConfigResource);
     }
