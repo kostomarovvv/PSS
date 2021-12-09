@@ -36,7 +36,7 @@ global HardMediumSoftScoreHolder scoreHolder;
 // ############################################################################
 // Hard constraints
 // ############################################################################
-
+/*
 rule "nonrenewableResourceCapacity"
     when
         $resource : Resource(renewable == false, $capacity : capacity)
@@ -51,6 +51,7 @@ rule "nonrenewableResourceCapacity"
     then
         scoreHolder.addHardConstraintMatch(kcontext, $capacity - $used);
 end
+*/
 
 rule "renewableResourceUsedDay"
         salience 1 // Do these rules first (optional, for performance)
@@ -83,6 +84,18 @@ end
 // Soft constraints
 // ############################################################################
 
+rule "wmsDelay"
+    when
+         $maxProjectEndDate : Number() from accumulate(
+            ResourceRequirement(resourceRenewable == true, $executionMode : executionMode, resource.rid == "r_wms") and            
+            Allocation(jobType == JobType.STANDARD, executionMode == $executionMode, $endDate : endDate),            
+            max($endDate)
+        )
+    then
+        scoreHolder.addMediumConstraintMatch(kcontext, -$maxProjectEndDate.intValue());
+end
+
+/*
 rule "totalProjectDelay"
     when
         Allocation(jobType == JobType.SINK, endDate != null, $endDate : endDate,
@@ -90,7 +103,7 @@ rule "totalProjectDelay"
     then
         scoreHolder.addMediumConstraintMatch(kcontext, $criticalPathEndDate - $endDate);
 end
-
+*/
 
 rule "totalMakespan"
     when
