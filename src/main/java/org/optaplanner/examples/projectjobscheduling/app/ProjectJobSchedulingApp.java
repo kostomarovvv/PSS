@@ -34,6 +34,7 @@ import org.optaplanner.examples.projectjobscheduling.persistence.ProjectJobSched
 import org.optaplanner.examples.projectjobscheduling.persistence.ProjectJobSchedulingXmlExporter;
 import org.optaplanner.examples.projectjobscheduling.swingui.ProjectJobSchedulingPanel;
 import org.optaplanner.persistence.common.api.domain.solution.SolutionFileIO;
+import org.apache.commons.io.FilenameUtils;
 
 public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
 
@@ -49,12 +50,12 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
         String parf = null;		// имя файла
         try {
             parf = args[0];
-          }
+        }
         catch(Exception e){
             // if any error occurs
             e.printStackTrace();
         } 
-        String pSConf = SOLVER_CONFIG;
+        //String pSConf = SOLVER_CONFIG;
         ProjectJobSchedulingApp app;
         app = new ProjectJobSchedulingApp(); //(pSConf);
         //if (part == null) part = "TS60;";
@@ -63,6 +64,7 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
         //app.setProcessDir(pard);
 
         app.init();       
+        
         //app.run(parf);   
         //System.exit(0);            
 
@@ -139,7 +141,7 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
         	// create new file
 
         	//if (pFile == null) pFile = "d:\\Workspace_VR\\P1568C1-n15-k1.vrp";  //"d:\\Workspace_VR\\P1568C1-n159-k69-z171-b1-s1.vrp";  //P1568C1-n148-k42-z169-b1-s1.vrp"; //
-        	if (pFile == null) pFile = "d:\\Workspace_VR\\P1568C1-n205-k12-z204-b0-s0.vrp"; //"d:\\Workspace_VR\\P1568C1-n374-k93-z375-b0-s0.vrp"; 
+        	if (pFile == null) pFile = "d:\\Workspace_PSS\\PSS\\data\\projectjobscheduling\\import\\C-1.xml"; //"d:\\Workspace_VR\\P1568C1-n374-k93-z375-b0-s0.vrp"; 
         	
         	f = new File(pFile);
            
@@ -177,18 +179,22 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
                 ///p2 = FilenameUtils.getFullPath(p1) + FilenameUtils.getBaseName(p1) + ".xml";
                                 
                 // calculate route
-/*                VehicleRoutingSolution planningProblem = solutionBusiness.getSolution();
-                solutionBusiness.solve(planningProblem);
+                Schedule projectSchedule = solutionBusiness.getSolution();
+                solutionBusiness.solve(projectSchedule);                
+                //VehicleRoutingSolution planningProblem = solutionBusiness.getSolution();
+                //solutionBusiness.solve(planningProblem);
                 //new SolveWorker(planningProblem).execute();
                 
                 // save result
-                fres = new File(FilenameUtils.getFullPath(pFile), FilenameUtils.getBaseName(pFile) + ".xml");
-                solutionBusiness.exportSolution(fres);
+                fres = new File(FilenameUtils.getFullPath(pFile), FilenameUtils.getBaseName(pFile) + "res.xml");
+                //this.ex
+                solutionBusiness.exportSolution(new ProjectJobSchedulingXmlExporter(), fres);  //exportSolution(fres);                
+                
                 //solutionBusiness.saveSolution(fres);
 //             }
                today = Calendar.getInstance().getTime(); 
                System.out.println("end query " + df.format(today));
-//             Thread.sleep(300);*/
+//             Thread.sleep(300);
            //}  
         } catch(Exception e){
            // if any error occurs

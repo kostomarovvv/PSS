@@ -8,9 +8,10 @@
   <entityClass>org.optaplanner.examples.projectjobscheduling.domain.Allocation</entityClass>
 
   <scoreDirectorFactory>
-    <!-- <constraintProviderClass>org.optaplanner.examples.projectjobscheduling.score.ProjectJobSchedulingConstraintProvider</constraintProviderClass> -->
+    <!-- <constraintProviderClass>org.optaplanner.examples.projectjobscheduling.score.ProjectJobSchedulingConstraintProvider</constraintProviderClass>  -->
     <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.projectjobscheduling.optional.score.ProjectJobSchedulingIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
-    <scoreDrl>org/optaplanner/examples/projectjobscheduling/optional/score/projectJobSchedulingConstraints.drl</scoreDrl> 
+    
+    <scoreDrl>org/optaplanner/examples/projectjobscheduling/optional/score/projectJobSchedulingConstraints.drl</scoreDrl>
     <!--<assertionScoreDirectorFactory>-->
       <!--<scoreDrl>org/optaplanner/examples/projectjobscheduling/optional/score/projectJobSchedulingConstraints.drl</scoreDrl>-->
     <!--</assertionScoreDirectorFactory>-->

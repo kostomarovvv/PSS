@@ -60,12 +60,6 @@ import org.optaplanner.examples.projectjobscheduling.domain.resource.Resource;
 
 public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter<Schedule> {
 
-    /*public static void main(String[] args) {
-        SolutionConverter<Schedule> converter = SolutionConverter.createImportConverter(
-                ProjectJobSchedulingApp.DATA_DIR_NAME, new ProjectJobSchedulingXmlImporter(), Schedule.class);
-        converter.convertAll();
-    }*/
-
     @Override
     public XmlInputBuilder<Schedule> createXmlInputBuilder() {
         return new ProjectJobSchedulingInputBuilder();
@@ -85,6 +79,7 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
         private long executionModeId = 0L;
         private long resourceRequirementId = 0L;
 
+        //private Resource resourceSource;
         //private Map<Project, File> projectFileMap;
 
         @Override
@@ -93,11 +88,6 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
             schedule.setId(0L);
             readXmlQuery();
             
-            /*readProjectList();
-            readResourceList();
-            for (Map.Entry<Project, File> entry : projectFileMap.entrySet()) {
-                readProjectFile(entry.getKey(), entry.getValue());
-            }*/            
             removePointlessExecutionModes();
             createAllocationList();
             logger.info("Schedule {} has {} projects, {} jobs, {} execution modes, {} resources"
@@ -186,9 +176,15 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
                     	resource.setCapacity(Integer.parseInt(squantity));
                     } catch (Exception e) {
                     	throw new IllegalArgumentException("Invalid Quantity (" + quantityElement.getText() + ").", e);
-                    }                    
+                    }                                        
                                    
                 }
+                /*resourceSource = new GlobalResource();
+                resourceList.add(resourceSource);
+                resourceSource.setId(resourceId);
+                resourceId++;
+                resourceSource.setRID("99999");
+                resourceSource.setCapacity(99999);*/
                 //globalResourceListSize = resourceList.size();
                 schedule.setResourceList(resourceList);
             } 
@@ -296,41 +292,60 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
                     readExecmodeList(project, zakazElement.getChild("ExecModeList"));
 
                     project.setReleaseDate(0);
-                    project.setCriticalPathDuration(schedule.getCriticalPathDuration());
+                    int calcDuration = getCalcDuration(project);
+                    project.setCriticalPathDuration(calcDuration); //schedule.getCriticalPathDuration()
+                    project.setSchedule(schedule);
                     projectList.add(project);
                     detectPointlessSuccessor(project);
+                    List<LocalResource> localResourceList = new ArrayList<>(0); //schedule.getResourceList().size());
+                    project.setLocalResourceList(localResourceList);
                 }
 
                 schedule.setProjectList(projectList);
             }
         }        
 
-        private Job GetNewJob(Project project, List<Job> jobList, JobType jobType) {
+        private Job GetNewJob(Project project, List<Job> jobList, String soid) {//JobType jobType) {
             Job job = new Job();
             job.setProject(project);
-            job.setJobType(jobType);
+            //job.setJobType(jobType);
             job.setId(jobId);
             jobId++;
-            if (jobType == JobType.SOURCE) {
+            job.setOID(soid);
+            if (soid.equals("SOURCE")) {
+                job.setJobType(JobType.SOURCE);
+            }
+            else if (soid.equals("SINK")) {
+                job.setJobType(JobType.SINK);
+            }
+            else job.setJobType(JobType.STANDARD);
+            /*if (jobType == JobType.SOURCE) {
                 job.setOID("9991");                
             }
             else if (jobType == JobType.SINK) {
                 job.setOID("9992");
-            }
+            }*/
             List<Job> successorJobList = new ArrayList<>(schedule.getOperationList().size());
             job.setSuccessorJobList(successorJobList);
-            if (job.getJobType() != JobType.STANDARD) {
+            /*if (job.getJobType() != JobType.STANDARD) {
                 ExecutionMode executionMode = new ExecutionMode();                
                 executionMode.setId(executionModeId);
                 executionModeId++;
                 executionMode.setDuration(0);
                 executionMode.setJob(job);
                 executionMode.setResourceRequirementList(new ArrayList<ResourceRequirement>(0));
-                List<ExecutionMode> executionModeList = new ArrayList<ExecutionMode>(1);
+                /*ResourceRequirement resourceRequirement = new ResourceRequirement();
+                resourceRequirement.setId(resourceRequirementId);
+                resourceRequirementId++;
+                resourceRequirement.setExecutionMode(executionMode);
+                resourceRequirement.setResource(resourceSource);
+                resourceRequirement.setRequirement(1);
+                executionMode.getResourceRequirementList().add(resourceRequirement);*/
+                /*List<ExecutionMode> executionModeList = new ArrayList<ExecutionMode>(1);
                 executionModeList.add(executionMode);
                 job.setExecutionModeList(executionModeList);
                 schedule.getExecutionModeList().add(executionMode);
-            }
+            }*/
             jobList.add(job);
             return job;
         }
@@ -339,29 +354,41 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
             int operationCount = schedule.getOperationList().size() + 2;
             List<Job> jobList = new ArrayList<>(operationCount);
 
-            Job jobsrc = GetNewJob(project, jobList, JobType.SOURCE);           
+            //Job jobsrc = GetNewJob(project, jobList, JobType.SOURCE);           
 
-            Job jobLast = null;
+            //List<Job> jobLastList = new ArrayList<>(operationCount);
+            //Job jobLast = null;
             int i = 0;
             for(Job operation: schedule.getOperationList()) {
-                Job jobstandard = GetNewJob(project, jobList, JobType.STANDARD);
-                jobstandard.setOID(operation.getOID());                
+                Job jobstandard = GetNewJob(project, jobList, operation.getOID()); //JobType.STANDARD);
+                //jobstandard.setOID(operation.getOID());                
                 jobstandard.setSuccessorJobNames(operation.getSuccessorJobNames());
-                if (i == 0) 
+                /*if (i == 0) 
                     jobsrc.getSuccessorJobList().add(jobstandard);
                 i += 1;
                 if (i == schedule.getOperationList().size()) 
                     jobLast = jobstandard;                    
+                for (String srcOperation: jobstandard.getSuccessorJobNames()) {
+                    if (srcOperation.equals("SINK") || srcOperation.equals("sink")) {
+                        jobLastList.add(jobstandard);
+                    }
+                }*/
             }
-            Job jobsink = GetNewJob(project, jobList,JobType.SINK);
-            if (jobLast != null)
+            /*Job jobsink = GetNewJob(project, jobList,JobType.SINK);
+            if ((jobLast != null) && (jobLastList.size() == 0)) {
               jobLast.getSuccessorJobList().add(jobsink);
+            }
+            else {
+               for (Job job: jobLastList) {
+                   job.getSuccessorJobList().add(jobsink);
+               } 
+            }*/
 
             project.setJobList(jobList);
             schedule.getJobList().addAll(jobList);
 
             for(Job job: jobList) {
-                if (job.getJobType() != JobType.STANDARD) continue;
+ //               if (job.getJobType() != JobType.STANDARD) continue;
                 for (int j = 0; j < job.getSuccessorJobNames().size(); j++) {
                     String ssoid = job.getSuccessorJobNames().get(j);    
                     
@@ -377,11 +404,23 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
                         job.getSuccessorJobList().add(successorJob);
                     }
                     else {
+                        //if ((!ssoid.equals("SINK")) && (!ssoid.equals("sink"))) {
                         throw new IllegalArgumentException("Invalid Successor (" + ssoid + ").");                         
+                        
                     }
                 }
             }
         }
+
+        private int getCalcDuration(Project project) {
+            int res = 0;
+            for(Job job: project.getJobList()) {
+                ExecutionMode exMode = job.getExecutionModeList().get(0);
+                res += exMode.getDuration();
+            }
+            return res / 2;
+        }
+
 
         private void readExecmodeList(Project project, Element execmodeListElement) throws IOException {
             List<ExecutionMode> executionModeList;
@@ -421,11 +460,6 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
                     if (joboid == null) 
                         throw new IllegalArgumentException("Invalid ExecutionMode.OID (" + soid + ").");
                     executionMode.setJob(joboid);
-                    if (joboid.getExecutionModeList() == null) {
-                        List<ExecutionMode> executionJobModeList = new ArrayList<ExecutionMode>(exmodeElementList.size());
-                        joboid.setExecutionModeList(executionJobModeList);
-                    }
-                    joboid.getExecutionModeList().add(executionMode);
                     	
                     Element durationElement = exModeElement.getChild("Duration");
                     String sduration = durationElement.getText();
@@ -438,6 +472,11 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
                     
                     readExModeResourceList(project, executionMode, exModeElement.getChild("ResourceList"));
 
+                    if (joboid.getExecutionModeList() == null) {
+                        List<ExecutionMode> executionJobModeList = new ArrayList<ExecutionMode>(exmodeElementList.size());
+                        joboid.setExecutionModeList(executionJobModeList);
+                    }
+                    joboid.getExecutionModeList().add(executionMode);                    
                     executionModeList.add(executionMode);
                 }
                 schedule.getExecutionModeList().addAll(executionModeList);
@@ -903,6 +942,13 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
                 }
             }
             schedule.setAllocationList(allocationList);
+/*
+            for (Allocation allocation : allocationList) {
+                if ((allocation.getId() == 5) || (allocation.getId() == 6)) {
+                    allocation.setPredecessorsDoneDate(allocation.getPredecessorsDoneDate()+20);
+                }
+            }    
+*/
         }
 
     }

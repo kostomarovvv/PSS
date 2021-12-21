@@ -35,6 +35,8 @@ public class Project extends AbstractPersistable {
 
     private String zakaz;
 
+    private Schedule schedule;
+
     public int getReleaseDate() {
         return releaseDate;
     }
@@ -83,6 +85,14 @@ public class Project extends AbstractPersistable {
         this.zakaz = zakaz;
     }
 
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
     // ************************************************************************
     // Complex methods
     // ************************************************************************
@@ -93,6 +103,10 @@ public class Project extends AbstractPersistable {
 
     public String getLabel() {
         return "Project " + id;
+    }
+
+    public int getCriticalPeriod() {
+        return schedule.getCriticalPathDuration();
     }
 
 }

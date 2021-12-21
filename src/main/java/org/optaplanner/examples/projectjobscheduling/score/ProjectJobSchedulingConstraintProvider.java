@@ -37,6 +37,8 @@ public class ProjectJobSchedulingConstraintProvider implements ConstraintProvide
                 nonRenewableResourceCapacity(constraintFactory),
                 renewableResourceCapacity(constraintFactory),
                 totalProjectDelay(constraintFactory),
+//                totalProjectDelay2(constraintFactory)
+//                totalDelay(constraintFactory),
                 totalMakespan(constraintFactory)
         };
     }
@@ -80,6 +82,15 @@ public class ProjectJobSchedulingConstraintProvider implements ConstraintProvide
                         allocation -> allocation.getProjectCriticalPathEndDate() - allocation.getEndDate());
     }
 
+    protected Constraint totalProjectDelay2(ConstraintFactory constraintFactory) {
+        return constraintFactory.from(Allocation.class)
+                .filter(allocation -> allocation.getPredecessorAllocationList().size() != 0) 
+                .filter(allocation -> allocation.getPredecessorAllocationList().get(0).getJobType() == JobType.SOURCE)    
+                .impact("Total project delay2",
+                        HardMediumSoftScore.ofMedium(1),
+                        allocation -> allocation.getStartDate() - (allocation.getCriticalPeriod() - allocation.getProjectCriticalPathEndDate()) );
+    }
+
     protected Constraint totalMakespan(ConstraintFactory constraintFactory) {
         return constraintFactory.from(Allocation.class)
                 .filter(allocation -> allocation.getEndDate() != null)
@@ -89,5 +100,16 @@ public class ProjectJobSchedulingConstraintProvider implements ConstraintProvide
                         HardMediumSoftScore.ofSoft(1),
                         maxEndDate -> maxEndDate);
     }
+
+
+    protected Constraint totalDelay(ConstraintFactory constraintFactory) {
+        return constraintFactory.from(Allocation.class)
+                .filter(allocation -> allocation.getDelay() != null)  
+                .filter(allocation -> allocation.getPredecessorAllocationList().size() != 0) 
+                .filter(allocation -> allocation.getPredecessorAllocationList().get(0).getJobType() != JobType.SOURCE)                             
+                .penalize("Total Delay",
+                        HardMediumSoftScore.ofHard(1), //Medium
+                        allocation -> allocation.getDelay());
+    }    
 
 }

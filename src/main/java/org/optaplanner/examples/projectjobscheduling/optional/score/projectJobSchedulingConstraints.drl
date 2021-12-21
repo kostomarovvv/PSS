@@ -77,18 +77,31 @@ rule "renewableResourceCapacity"
             $used > $capacity
         )
     then
-        scoreHolder.addHardConstraintMatch(kcontext, $capacity - $used);
+        scoreHolder.addHardConstraintMatch(kcontext, ($capacity - $used)*1000);
 end
 
 // ############################################################################
 // Soft constraints
 // ############################################################################
-
+/*
+rule "wmsDelay"
+    when
+         $totalDelay : Number() from accumulate(
+            $resource : Resource(getRID().equals("r_wms")) and
+            ResourceRequirement(resource == $resource, resourceRenewable == true, $executionMode : executionMode) and            //, resource.rid == "r_wms"
+            Allocation(jobType == JobType.STANDARD, executionMode == $executionMode, $delay : delay),            
+            sum($delay)
+        )
+    then
+        scoreHolder.addHardConstraintMatch(kcontext, -$totalDelay.intValue());
+end
+*/
 
 rule "wmsDelay"
     when
          $maxProjectEndDate : Number() from accumulate(
-            ResourceRequirement(resourceRenewable == true, $executionMode : executionMode, resource.rid == "r_wms") and            
+            $resource : Resource(getRID().equals("r_wms")) and
+            ResourceRequirement(resource == $resource, resourceRenewable == true, $executionMode : executionMode) and            //, resource.rid == "r_wms"
             Allocation(jobType == JobType.STANDARD, executionMode == $executionMode, $endDate : endDate),            
             max($endDate)
         )
@@ -96,6 +109,16 @@ rule "wmsDelay"
         scoreHolder.addMediumConstraintMatch(kcontext, -$maxProjectEndDate.intValue());
 end
 
+
+/*
+rule "totalProjectDelaySrc"
+    when
+        Allocation(jobType == JobType.SOURCE, startDate != null, $startDate : startDate, $criticalPeriod : criticalPeriod)
+        //       $criticalPathEndDate : projectCriticalPathEndDate)
+    then
+        scoreHolder.addMediumConstraintMatch(kcontext, $startDate - $criticalPeriod );
+end
+*/
 
 /*
 rule "totalProjectDelay"
@@ -122,8 +145,8 @@ end
 /*
 rule "totalDelay"
     when
-        Allocation(delay != null, $delay : delay)
+        Allocation(delay != null,  $delay : delay) //jobType != JobType.SOURCE, 
     then
-        scoreHolder.addSoftConstraintMatch(kcontext, -$delay);
+        scoreHolder.addHardConstraintMatch(kcontext, -$delay);
 end
 */

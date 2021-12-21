@@ -14,7 +14,8 @@
             "type": "java",
             "name": "Launch ProjectJobSchedulingApp",
             "request": "launch",
-            "mainClass": "org.optaplanner.examples.projectjobscheduling.app.ProjectJobSchedulingApp"
+            "mainClass": "org.optaplanner.examples.projectjobscheduling.app.ProjectJobSchedulingApp",
+//            "vmArgs": "-Dlogback.level.org.optaplanner=trace"
         }
     ]
 }

@@ -33,7 +33,7 @@ import org.optaplanner.examples.projectjobscheduling.domain.solver.PredecessorsD
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-@PlanningEntity(pinningFilter = NotSourceOrSinkAllocationFilter.class)
+@PlanningEntity(pinningFilter = NotSourceOrSinkAllocationFilter.class) // 
 @XStreamAlias("PjsAllocation")
 public class Allocation extends AbstractPersistable {
 
@@ -148,6 +148,10 @@ public class Allocation extends AbstractPersistable {
         return job.getProject().getCriticalPathEndDate();
     }
 
+    public int getCriticalPeriod() { 
+        return job.getProject().getCriticalPeriod();
+    }
+
     public JobType getJobType() {
         return job.getJobType();
     }
@@ -167,7 +171,7 @@ public class Allocation extends AbstractPersistable {
 
     @ValueRangeProvider(id = "delayRange")
     public CountableValueRange<Integer> getDelayRange() {
-        return ValueRangeFactory.createIntValueRange(0, 500);
+        return ValueRangeFactory.createIntValueRange(0, 720);
     }
 
 }

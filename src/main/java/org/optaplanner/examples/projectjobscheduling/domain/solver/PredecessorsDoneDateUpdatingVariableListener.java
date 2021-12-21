@@ -23,6 +23,7 @@ import java.util.Queue;
 import org.optaplanner.core.api.domain.variable.VariableListener;
 import org.optaplanner.core.api.score.director.ScoreDirector;
 import org.optaplanner.examples.projectjobscheduling.domain.Allocation;
+import org.optaplanner.examples.projectjobscheduling.domain.JobType;
 import org.optaplanner.examples.projectjobscheduling.domain.Schedule;
 
 public class PredecessorsDoneDateUpdatingVariableListener implements VariableListener<Schedule, Allocation> {
@@ -67,6 +68,16 @@ public class PredecessorsDoneDateUpdatingVariableListener implements VariableLis
                 uncheckedSuccessorQueue.addAll(allocation.getSuccessorAllocationList());
             }
         }
+
+/*        Queue<Allocation> uncheckedPredecessorQueue = new ArrayDeque<>();
+        uncheckedPredecessorQueue.addAll(originalAllocation.getPredecessorAllocationList());
+        while (!uncheckedPredecessorQueue.isEmpty()) {
+            Allocation allocation = uncheckedPredecessorQueue.remove();
+            boolean updated = updateSuccessorsDoneDate(scoreDirector, allocation);
+            if (updated) {
+//                uncheckedPredecessorQueue.addAll(allocation.getPredecessorAllocationList());
+            }
+        }       */ 
     }
 
     /**
@@ -89,5 +100,23 @@ public class PredecessorsDoneDateUpdatingVariableListener implements VariableLis
         scoreDirector.afterVariableChanged(allocation, "predecessorsDoneDate");
         return true;
     }
-
+    
+    protected boolean updateSuccessorsDoneDate(ScoreDirector<Schedule> scoreDirector, Allocation allocation) {
+        // For the source the doneDate must be 0.
+        Integer doneDate = 100000;
+        for (Allocation successorAllocation : allocation.getSuccessorAllocationList()) {
+            if (allocation.getJobType() == JobType.SOURCE) break;
+            Integer minDelay = successorAllocation.getDelay();
+            if (minDelay == null) minDelay = 0;
+            doneDate = Math.min(doneDate, minDelay);
+        }
+        if ((doneDate == 0) || (doneDate == 100000)) { //(Objects.equals(doneDate, allocation.getDelay())) {
+            return false;
+        }
+        scoreDirector.beforeVariableChanged(allocation, "predecessorsDoneDate");
+        //Integer delta = doneDate - allocation.getEndDate();
+        allocation.setPredecessorsDoneDate(allocation.getPredecessorsDoneDate() + doneDate);
+        scoreDirector.afterVariableChanged(allocation, "predecessorsDoneDate");
+        return true;
+    }
 }

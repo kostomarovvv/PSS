@@ -80,7 +80,7 @@ public abstract class CommonApp<Solution_> extends LoggingMain {
     protected final String dataDirName;
     protected final String iconResource;
 
-    public SolverFactory<Solution_> solverFactory;  // добавил vvk 30.11.2021
+    //public SolverFactory<Solution_> solverFactory;  // добавил vvk 30.11.2021
     public long minutesSpentLimit;					// добавил vvk 30.11.2021
     public long secondsSpentLimit;					// добавил vvk 30.11.2021
     public long unimprovedSecondsSpentLimit;		// добавил vvk 30.11.2021
@@ -164,6 +164,12 @@ public abstract class CommonApp<Solution_> extends LoggingMain {
 */
     protected SolverFactory<Solution_> createSolverFactory() {
         return SolverFactory.createFromXmlResource(solverConfigResource);
+        /*SolverConfig solverConfig = SolverConfig.createFromXmlResource("org/optaplanner/examples/nqueens/solver/nqueensSolverConfig.xml");
+        solverConfig.withTerminationConfig(new TerminationConfig()
+                    .withMinutesSpentLimit(userInput));
+
+        return SolverFactory.create(solverConfig);*/
+
     }
 
     protected abstract SolutionPanel<Solution_> createSolutionPanel();
