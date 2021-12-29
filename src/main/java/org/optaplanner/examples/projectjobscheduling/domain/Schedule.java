@@ -49,7 +49,10 @@ public class Schedule extends AbstractPersistable {
     private Date endDate;    
     private int criticalPathDuration;
     private String termination;
+    private String optimizationOperation;
     private List<Job> operationList;
+
+    private int stage = 1;
 
     @XStreamConverter(HardMediumSoftScoreXStreamConverter.class)
     private HardMediumSoftScore score;
@@ -163,6 +166,34 @@ public class Schedule extends AbstractPersistable {
 
     public void setCriticalPathDuration(int criticalPathDuration) {
         this.criticalPathDuration = criticalPathDuration;
+    }
+
+    public int getStage() {
+        return this.stage;
+    }
+
+    public void setStage(int stage) {
+        this.stage = stage;
+        if (stage == 2) {
+            for (Allocation allocation: getAllocationList()) {                
+                allocation.setPinned(true);
+                if (allocation.getJob().getOID().equals(optimizationOperation))
+                    allocation.setPinned(false);
+                /*for (ResourceRequirement resourceRequirement: allocation.getExecutionMode().getResourceRequirementList()) {
+                    if (resourceRequirement.getResource().getRID().equals("r_wms")) {
+                        allocation.setPinned(false);
+                    }                    
+                } */               
+            }
+        }
+    }
+
+    public String getOptimizationOperation() {
+        return this.optimizationOperation;
+    }
+
+    public void setOptimizationOperation(String optimizationOperation) {
+        this.optimizationOperation = optimizationOperation;
     }
 
 	     

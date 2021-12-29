@@ -63,7 +63,7 @@ public class PredecessorsDoneDateUpdatingVariableListener implements VariableLis
         uncheckedSuccessorQueue.addAll(originalAllocation.getSuccessorAllocationList());
         while (!uncheckedSuccessorQueue.isEmpty()) {
             Allocation allocation = uncheckedSuccessorQueue.remove();
-            boolean updated = updatePredecessorsDoneDate(scoreDirector, allocation);
+            boolean updated = updatePredecessorsDoneDate(scoreDirector, allocation);            
             if (updated) {
                 uncheckedSuccessorQueue.addAll(allocation.getSuccessorAllocationList());
             }
@@ -88,9 +88,14 @@ public class PredecessorsDoneDateUpdatingVariableListener implements VariableLis
     protected boolean updatePredecessorsDoneDate(ScoreDirector<Schedule> scoreDirector, Allocation allocation) {
         // For the source the doneDate must be 0.
         Integer doneDate = 0;
+        if (allocation.getStage() == 2)
+            return false;
+        //Integer predDoneDate = 0;
         for (Allocation predecessorAllocation : allocation.getPredecessorAllocationList()) {
             int endDate = predecessorAllocation.getEndDate();
             doneDate = Math.max(doneDate, endDate);
+            /*if (Objects.equals(doneDate, endDate))
+                predDoneDate = predecessorAllocation.getPredecessorsDoneDate();*/
         }
         if (Objects.equals(doneDate, allocation.getPredecessorsDoneDate())) {
             return false;
@@ -98,10 +103,20 @@ public class PredecessorsDoneDateUpdatingVariableListener implements VariableLis
         scoreDirector.beforeVariableChanged(allocation, "predecessorsDoneDate");
         allocation.setPredecessorsDoneDate(doneDate);
         scoreDirector.afterVariableChanged(allocation, "predecessorsDoneDate");
+
+/*        // выравниваем предыдущие операции по правому краю
+        for (Allocation predecessorAllocation : allocation.getPredecessorAllocationList()) {
+            int endDate = predecessorAllocation.getEndDate();
+            if (Objects.equals(endDate, doneDate)) continue;
+            scoreDirector.beforeVariableChanged(predecessorAllocation, "predecessorsDoneDate");
+            predecessorAllocation.setPredecessorsDoneDate(predDoneDate);
+            scoreDirector.afterVariableChanged(predecessorAllocation, "predecessorsDoneDate");            
+        }*/
+
         return true;
     }
     
-    protected boolean updateSuccessorsDoneDate(ScoreDirector<Schedule> scoreDirector, Allocation allocation) {
+/*    protected boolean updateSuccessorsDoneDate(ScoreDirector<Schedule> scoreDirector, Allocation allocation) {
         // For the source the doneDate must be 0.
         Integer doneDate = 100000;
         for (Allocation successorAllocation : allocation.getSuccessorAllocationList()) {
@@ -118,5 +133,5 @@ public class PredecessorsDoneDateUpdatingVariableListener implements VariableLis
         allocation.setPredecessorsDoneDate(allocation.getPredecessorsDoneDate() + doneDate);
         scoreDirector.afterVariableChanged(allocation, "predecessorsDoneDate");
         return true;
-    }
+    }*/
 }

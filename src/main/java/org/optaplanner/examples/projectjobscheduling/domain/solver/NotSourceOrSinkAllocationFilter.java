@@ -26,7 +26,7 @@ public class NotSourceOrSinkAllocationFilter implements PinningFilter<Schedule, 
     @Override
     public boolean accept(Schedule schedule, Allocation allocation) {
         JobType jobType = allocation.getJob().getJobType();
-        return jobType == JobType.SOURCE || jobType == JobType.SINK;
+        return jobType == JobType.SOURCE || jobType == JobType.SINK || allocation.getPinned();
     }
 
 }

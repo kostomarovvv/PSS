@@ -38,6 +38,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+//import java.time.LocalDateTime;
+//import java.time.Duration;
+//import java.time.ZoneId;
+//import java.time.ZonedDateTime;
+//import java.time.temporal.ChronoUnit;
 
 public class ProjectJobSchedulingXmlExporter extends AbstractXmlSolutionExporter<Schedule> {
     private static final String OUTPUT_FILE_SUFFIX = "xml"; 
@@ -162,22 +167,31 @@ public class ProjectJobSchedulingXmlExporter extends AbstractXmlSolutionExporter
                 	machReqElement.setText(resReq.getResource().getRID());
                 	resReqListElement.addContent(machReqElement);
             	}
-            	
+          	
                 Calendar calendar = Calendar.getInstance();
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             	Element startDateElement = new Element("StartDate");
                 int startDate = allocation.getStartDate();
-                Date startDt = schedule.getStartDate();                
+                Date startDt = schedule.getStartDate();                   
+                //LocalDateTime startDateTime = startDt.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                //startDateTime = startDateTime.plus(Duration.of(startDate, ChronoUnit.MINUTES));
+                
                 calendar.setTime(startDt);
+                //long stimeInMinutes = calendar.getTimeInMillis() / 1000 / 60;
+                //startDateElement.setText(dateFormat.format(Date.from(startDateTime.atZone(ZoneId.systemDefault()).toInstant())));
                 calendar.add(Calendar.MINUTE, startDate);
                	startDateElement.setText(dateFormat.format(calendar.getTime()));
             	allocationElement.addContent(startDateElement);
             	
             	Element endDateElement = new Element("EndDate");
                 int endDate = allocation.getEndDate();
-                Date endDt = schedule.getEndDate();                
+                Date endDt = schedule.getStartDate();            
+                //LocalDateTime endDateTime = endDt.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                //endDateTime = endDateTime.plus(Duration.of(endDate, ChronoUnit.MINUTES));    
                 calendar.setTime(endDt);
+                //long etimeInMinutes = calendar.getTimeInMillis() / 1000 / 60;
+                //endDateElement.setText(dateFormat.format(Date.from(endDateTime.atZone(ZoneId.systemDefault()).toInstant()))); 
                 calendar.add(Calendar.MINUTE, endDate);
                	endDateElement.setText(dateFormat.format(calendar.getTime()));
             	allocationElement.addContent(endDateElement);

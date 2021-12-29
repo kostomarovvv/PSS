@@ -24,7 +24,11 @@ import java.util.Date;
 import java.util.Calendar;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
+import org.optaplanner.core.api.solver.Solver;
+import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.examples.common.app.CommonApp;
+import org.optaplanner.examples.common.business.SolutionBusiness;
 import org.optaplanner.examples.common.persistence.AbstractSolutionImporter;
 import org.optaplanner.examples.common.persistence.AbstractSolutionExporter;
 import org.optaplanner.examples.projectjobscheduling.domain.Schedule;
@@ -35,11 +39,16 @@ import org.optaplanner.examples.projectjobscheduling.persistence.ProjectJobSched
 import org.optaplanner.examples.projectjobscheduling.swingui.ProjectJobSchedulingPanel;
 import org.optaplanner.persistence.common.api.domain.solution.SolutionFileIO;
 import org.apache.commons.io.FilenameUtils;
+//import org.optaplanner.core.impl.solver.*;
+import org.optaplanner.core.config.solver.termination.TerminationConfig;
+import org.optaplanner.core.config.solver.SolverConfig;
 
 public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
 
     public static final String SOLVER_CONFIG =
             "org/optaplanner/examples/projectjobscheduling/projectJobSchedulingSolverConfig.xml";
+    public static final String SOLVER_CONFIG2 =
+            "org/optaplanner/examples/projectjobscheduling/projectJobSchedulingSolverConfig2.xml";            
 
     public static final String DATA_DIR_NAME = "projectjobscheduling";
 
@@ -48,8 +57,10 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
         //new ProjectJobSchedulingApp().init();
 
         String parf = null;		// имя файла
+        String part = null;     // termination опция
         try {
             parf = args[0];
+            part = args[1];
         }
         catch(Exception e){
             // if any error occurs
@@ -58,16 +69,14 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
         //String pSConf = SOLVER_CONFIG;
         ProjectJobSchedulingApp app;
         app = new ProjectJobSchedulingApp(); //(pSConf);
-        //if (part == null) part = "TS60;";
-        //app.setTermination(part);
+        if (part == null) part = "TS60;US10;";
+        app.setTermination(part);
         //if (pard == null) pard = "D:\\Workspace_PS\\PS\\data\\projectjobscheduling\\import\\";
         //app.setProcessDir(pard);
 
-        app.init();       
-        
-        //app.run(parf);   
-        //System.exit(0);            
-
+        app.init();             
+        app.run(parf);   
+        System.exit(0);           
     }
 
     public ProjectJobSchedulingApp() {
@@ -128,6 +137,7 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
     	    	unimprovedStepCountLimit = ival;
 			}   	    
     	}
+        
     } 
 
     public void run(String pFile) {
@@ -136,66 +146,49 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
         String p2 = null;
 //        File[] paths;
         
-        try{      
-        	///solutionBusiness = createSolutionBusiness();        
-        	// create new file
-
-        	//if (pFile == null) pFile = "d:\\Workspace_VR\\P1568C1-n15-k1.vrp";  //"d:\\Workspace_VR\\P1568C1-n159-k69-z171-b1-s1.vrp";  //P1568C1-n148-k42-z169-b1-s1.vrp"; //
-        	if (pFile == null) pFile = "d:\\Workspace_PSS\\PSS\\data\\projectjobscheduling\\import\\C-1.xml"; //"d:\\Workspace_VR\\P1568C1-n374-k93-z375-b0-s0.vrp"; 
-        	
+        try{    
+        	if (pFile == null) pFile = "d:\\Workspace_PSS\\PSS\\data\\projectjobscheduling\\import\\test_57457_small.xml"; //"d:\\Workspace_VR\\P1568C1-n374-k93-z375-b0-s0.vrp"; 
         	f = new File(pFile);
-           
-        	//while (true) {
-             // returns pathnames for files and directory
-//             paths = f.listFiles();
 
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        Date today = Calendar.getInstance().getTime();        
-       
-              
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+            Date today = Calendar.getInstance().getTime();        
+ 
+            System.out.println("start query " + df.format(today));
+
+
+                
+            //*SolverConfig solverConfig1 = new SolverConfig(template); // 
+            SolverConfig solverConfig2 = SolverConfig.createFromXmlResource(SOLVER_CONFIG2); //"org/optaplanner/examples/nqueens/solver/nqueensSolverConfig.xml");
+            ///solverConfig1.getTerminationConfig().setSecondsSpentLimit(secondsSpentLimit);
+            ///solverConfig1.getTerminationConfig().setUnimprovedSecondsSpentLimit(unimprovedSecondsSpentLimit);
+
+            solverConfig2.withTerminationConfig(new TerminationConfig()
+                    .withSecondsSpentLimit(secondsSpentLimit)
+                    .withUnimprovedSecondsSpentLimit(unimprovedSecondsSpentLimit));                   
         
-             System.out.println("start query " + df.format(today));
-             // for each pathname in pathname array
-//             for(File path:paths)
-//             {
-                // prints file and directory paths
-//                System.out.println(path);
-             
-             /*VehicleRoutingSolution unsolvedRoutingSolution = new VehicleRoutingSolution();
-             VehicleRoutingImporter importer = new VehicleRoutingImporter();
-             Solution solution1 = unsolvedRoutingSolution;
-            		 solution1 = importer.readSolution(f);
-             //AbstractSolutionImporter importer = importers[0]; //determineImporter(f);
-             //Solution solution = importer.readSolution(f);                          
+            SolverFactory<Schedule> solverFactory2 = SolverFactory.create(solverConfig2);
+            Solver<Schedule> solver2 = solverFactory2.buildSolver();
 
-             // Solve the problem
-             VehicleRoutingSolution solvedRoutingSolution = vsolver.solve(unsolvedRoutingSolution);*/
-             
-             
-             
-                // import file
-             solutionBusiness.importSolution(f);
-                
-                ///p2 = FilenameUtils.getFullPath(p1) + FilenameUtils.getBaseName(p1) + ".xml";
+            // import solution
+            solutionBusiness.importSolution(f);
+            // calculate route
+            Schedule projectSchedule = solutionBusiness.getSolution(); 
+            projectSchedule.setStage(1);                          
+            //*Schedule solvedSchedule = solver1.solve(projectSchedule);
+            //*solutionBusiness.setSolution(solvedSchedule);
+            Schedule solvedSchedule = solutionBusiness.solve(projectSchedule);  
+            solvedSchedule.setStage(2);                
+            Schedule solvedSchedule2 = solver2.solve(solvedSchedule);
+            //Schedule solvedSchedule2 = solutionBusiness.solve(solvedSchedule);    
+            solutionBusiness.setSolution(solvedSchedule2);                           
                                 
-                // calculate route
-                Schedule projectSchedule = solutionBusiness.getSolution();
-                solutionBusiness.solve(projectSchedule);                
-                //VehicleRoutingSolution planningProblem = solutionBusiness.getSolution();
-                //solutionBusiness.solve(planningProblem);
-                //new SolveWorker(planningProblem).execute();
+            // save result
+            fres = new File(FilenameUtils.getFullPath(pFile), FilenameUtils.getBaseName(pFile) + "res.xml");                
+            
+            solutionBusiness.exportSolution(new ProjectJobSchedulingXmlExporter(), fres);  //exportSolution(fres);                
                 
-                // save result
-                fres = new File(FilenameUtils.getFullPath(pFile), FilenameUtils.getBaseName(pFile) + "res.xml");
-                //this.ex
-                solutionBusiness.exportSolution(new ProjectJobSchedulingXmlExporter(), fres);  //exportSolution(fres);                
-                
-                //solutionBusiness.saveSolution(fres);
-//             }
-               today = Calendar.getInstance().getTime(); 
-               System.out.println("end query " + df.format(today));
-//             Thread.sleep(300);
-           //}  
+            today = Calendar.getInstance().getTime(); 
+            System.out.println("end query " + df.format(today));
         } catch(Exception e){
            // if any error occurs
            e.printStackTrace();

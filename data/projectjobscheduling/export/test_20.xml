@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Solution>
+  <SchedulingID />
+  <HardConstraintsPenalty>0</HardConstraintsPenalty>
+  <SoftConstraintsPenalty1>-117</SoftConstraintsPenalty1>
+  <SoftConstraintsPenalty2>-399</SoftConstraintsPenalty2>
+  <AllocationTotalList>
+    <Allocation>
+      <Id>Allocation-0</Id>
+      <OID>SOURCE</OID>
+      <ResourceList />
+      <StartDate>2021-12-20 08:00:00</StartDate>
+      <EndDate>2021-12-20 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <PredAllocationList />
+      <Zakaz>1164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-1</Id>
+      <OID>901</OID>
+      <ResourceList>
+        <Resource>r_completer</Resource>
+      </ResourceList>
+      <StartDate>2021-12-20 08:00:00</StartDate>
+      <EndDate>2021-12-20 08:35:00</EndDate>
+      <Quantity>35</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-0</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-2</Id>
+      <OID>903</OID>
+      <ResourceList>
+        <Resource>r_wms</Resource>
+      </ResourceList>
+      <StartDate>2021-12-20 08:00:00</StartDate>
+      <EndDate>2021-12-20 08:39:00</EndDate>
+      <Quantity>39</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-0</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-3</Id>
+      <OID>902</OID>
+      <ResourceList>
+        <Resource>r_shipper</Resource>
+      </ResourceList>
+      <StartDate>2021-12-20 08:39:00</StartDate>
+      <EndDate>2021-12-20 10:39:00</EndDate>
+      <Quantity>120</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-1</PredAllocation>
+        <PredAllocation>Allocation-2</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-4</Id>
+      <OID>SINK</OID>
+      <ResourceList />
+      <StartDate>2021-12-20 10:39:00</StartDate>
+      <EndDate>2021-12-20 10:39:00</EndDate>
+      <Quantity>0</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-3</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-5</Id>
+      <OID>SOURCE</OID>
+      <ResourceList />
+      <StartDate>2021-12-20 08:00:00</StartDate>
+      <EndDate>2021-12-20 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <PredAllocationList />
+      <Zakaz>2164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-6</Id>
+      <OID>901</OID>
+      <ResourceList>
+        <Resource>r_completer</Resource>
+      </ResourceList>
+      <StartDate>2021-12-20 08:35:00</StartDate>
+      <EndDate>2021-12-20 09:10:00</EndDate>
+      <Quantity>35</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-5</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>2164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-7</Id>
+      <OID>903</OID>
+      <ResourceList>
+        <Resource>r_wms</Resource>
+      </ResourceList>
+      <StartDate>2021-12-20 08:39:00</StartDate>
+      <EndDate>2021-12-20 09:18:00</EndDate>
+      <Quantity>39</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-5</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>2164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-8</Id>
+      <OID>902</OID>
+      <ResourceList>
+        <Resource>r_shipper</Resource>
+      </ResourceList>
+      <StartDate>2021-12-20 10:39:00</StartDate>
+      <EndDate>2021-12-20 12:39:00</EndDate>
+      <Quantity>120</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-6</PredAllocation>
+        <PredAllocation>Allocation-7</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>2164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-9</Id>
+      <OID>SINK</OID>
+      <ResourceList />
+      <StartDate>2021-12-20 12:39:00</StartDate>
+      <EndDate>2021-12-20 12:39:00</EndDate>
+      <Quantity>0</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-8</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>2164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-10</Id>
+      <OID>SOURCE</OID>
+      <ResourceList />
+      <StartDate>2021-12-20 08:00:00</StartDate>
+      <EndDate>2021-12-20 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <PredAllocationList />
+      <Zakaz>3164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-11</Id>
+      <OID>901</OID>
+      <ResourceList>
+        <Resource>r_completer</Resource>
+      </ResourceList>
+      <StartDate>2021-12-20 09:10:00</StartDate>
+      <EndDate>2021-12-20 09:45:00</EndDate>
+      <Quantity>35</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-10</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>3164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-12</Id>
+      <OID>903</OID>
+      <ResourceList>
+        <Resource>r_wms</Resource>
+      </ResourceList>
+      <StartDate>2021-12-20 09:18:00</StartDate>
+      <EndDate>2021-12-20 09:57:00</EndDate>
+      <Quantity>39</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-10</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>3164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-13</Id>
+      <OID>902</OID>
+      <ResourceList>
+        <Resource>r_shipper</Resource>
+      </ResourceList>
+      <StartDate>2021-12-20 12:39:00</StartDate>
+      <EndDate>2021-12-20 14:39:00</EndDate>
+      <Quantity>120</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-11</PredAllocation>
+        <PredAllocation>Allocation-12</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>3164483</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-14</Id>
+      <OID>SINK</OID>
+      <ResourceList />
+      <StartDate>2021-12-20 14:39:00</StartDate>
+      <EndDate>2021-12-20 14:39:00</EndDate>
+      <Quantity>0</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-13</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>3164483</Zakaz>
+    </Allocation>
+  </AllocationTotalList>
+</Solution>
+

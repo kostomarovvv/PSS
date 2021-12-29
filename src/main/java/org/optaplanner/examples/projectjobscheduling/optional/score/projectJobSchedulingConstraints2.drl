@@ -37,22 +37,6 @@ global HardMediumSoftScoreHolder scoreHolder;
 // ############################################################################
 // Hard constraints
 // ############################################################################
-/*
-rule "nonrenewableResourceCapacity"
-    when
-        $resource : Resource(renewable == false, $capacity : capacity)
-        accumulate(
-            ResourceRequirement(resource == $resource,
-                    $executionMode : executionMode,
-                    $requirement : requirement)
-            and Allocation(executionMode == $executionMode);
-            $used : sum($requirement);
-            $used > $capacity
-        )
-    then
-        scoreHolder.addHardConstraintMatch(kcontext, $capacity - $used);
-end
-*/
 
 rule "renewableResourceUsedDay"
         salience 1 // Do these rules first (optional, for performance)
@@ -85,41 +69,9 @@ end
 // Soft constraints
 // ############################################################################
 
-rule "wmsDelay"
-    when
-         $maxProjectEndDate : Number() from accumulate(            
-            Allocation(jobType == JobType.STANDARD, isOptimizationJob == true, $endDate : endDate),              
-            max($endDate)
-        )
-    then
-        scoreHolder.addMediumConstraintMatch(kcontext, -$maxProjectEndDate.intValue());
-end
 
-/*
-rule "wmsDelay"
-    when
-         $maxProjectEndDate : Number() from accumulate(
-            $resource : Resource(getRID().equals("r_wms")) and
-            ResourceRequirement(resource == $resource, resourceRenewable == true, $executionMode : executionMode) and            //, resource.rid == "r_wms"
-            Allocation(jobType == JobType.STANDARD, executionMode == $executionMode, $endDate : endDate),             //stage == 1, 
-            max($endDate)
-        )
-    then
-        scoreHolder.addMediumConstraintMatch(kcontext, -$maxProjectEndDate.intValue());
-end
-*/
 
-/*
-rule "totalProjectDelaySrc"
-    when
-        Allocation(jobType == JobType.SOURCE, startDate != null, $startDate : startDate, $criticalPeriod : criticalPeriod)
-        //       $criticalPathEndDate : projectCriticalPathEndDate)
-    then
-        scoreHolder.addMediumConstraintMatch(kcontext, $startDate - $criticalPeriod );
-end
-*/
 
-/*
 rule "totalProjectDelay"
     when
         Allocation(jobType == JobType.SINK, endDate != null, $endDate : endDate,
@@ -127,13 +79,13 @@ rule "totalProjectDelay"
     then
         scoreHolder.addMediumConstraintMatch(kcontext, $criticalPathEndDate - $endDate);
 end
-*/
+
 
 
 rule "totalMakespan"
     when
         accumulate(
-            Allocation(jobType == JobType.SINK, $endDate : endDate); //stage == 1, 
+            Allocation(jobType == JobType.SINK, $endDate : endDate);
             $maxProjectEndDate : max($endDate)
         )
     then
@@ -150,11 +102,20 @@ rule "totalDelay"
 end
 */
 
-/*
+rule "checkSink"
+    when
+        $project: Project()
+        Allocation(project == $project, jobType == JobType.SINK, $endDateSink : endDate)
+        Allocation(project == $project, jobType == JobType.STANDARD, isOptimizationJob == true, $endDateOptim : endDate)        
+    then
+        if ($endDateSink < $endDateOptim)
+            scoreHolder.addHardConstraintMatch(kcontext, - 1000);
+end
+
 rule "operationsRightDelta"
         salience 1 // Do these rules first (optional, for performance)
     when
-        $allocation: Allocation(jobType == JobType.STANDARD, $rightdelta : rightDelta)      //stage == 2, 
+        $allocation: Allocation(jobType == JobType.STANDARD, $rightdelta : rightDelta)
     then
         insertLogical(new OperationsRightDelta($allocation, $rightdelta));        
 end
@@ -165,4 +126,4 @@ rule "rightDelta"
     then
         scoreHolder.addHardConstraintMatch(kcontext, -$rightdelta);
 end
-*/
+

@@ -27,6 +27,7 @@ import javax.swing.WindowConstants;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
 import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.core.impl.solver.DefaultSolverFactory;
+import org.optaplanner.core.impl.solver.*;
 import org.optaplanner.examples.common.business.SolutionBusiness;
 import org.optaplanner.examples.common.persistence.AbstractSolutionExporter;
 import org.optaplanner.examples.common.persistence.AbstractSolutionImporter;
@@ -36,6 +37,7 @@ import org.optaplanner.persistence.common.api.domain.solution.SolutionFileIO;
 import org.optaplanner.swing.impl.SwingUncaughtExceptionHandler;
 import org.optaplanner.swing.impl.SwingUtils;
 import org.optaplanner.core.config.solver.termination.TerminationConfig;
+import org.optaplanner.core.config.solver.SolverConfig;
 
 /**
  * @param <Solution_> the solution type, the class with the {@link PlanningSolution} annotation
@@ -84,7 +86,8 @@ public abstract class CommonApp<Solution_> extends LoggingMain {
     public long minutesSpentLimit;					// добавил vvk 30.11.2021
     public long secondsSpentLimit;					// добавил vvk 30.11.2021
     public long unimprovedSecondsSpentLimit;		// добавил vvk 30.11.2021
-    public int  unimprovedStepCountLimit; 			// добавил vvk 30.11.2021  
+    public int  unimprovedStepCountLimit; 			// добавил vvk 30.11.2021 
+    public SolverConfig template;
 
     protected SolverAndPersistenceFrame<Solution_> solverAndPersistenceFrame;
     protected SolutionBusiness<Solution_, ?> solutionBusiness;
@@ -128,13 +131,14 @@ public abstract class CommonApp<Solution_> extends LoggingMain {
         solverAndPersistenceFrame
                 .setDefaultCloseOperation(exitOnClose ? WindowConstants.EXIT_ON_CLOSE : WindowConstants.DISPOSE_ON_CLOSE);
         solverAndPersistenceFrame.init(centerForComponent);
-        solverAndPersistenceFrame.setVisible(true);
+        solverAndPersistenceFrame.setVisible(false);
     }
 
     public SolutionBusiness<Solution_, ?> createSolutionBusiness() {
         SolutionBusiness<Solution_, ?> solutionBusiness = new SolutionBusiness<>(this);
         DefaultSolverFactory<Solution_> solverFactory = (DefaultSolverFactory<Solution_>) createSolverFactory();
         solutionBusiness.setSolver(solverFactory);
+        
         solutionBusiness.setDataDir(determineDataDir(dataDirName));
         solutionBusiness.setSolutionFileIO(createSolutionFileIO());
         solutionBusiness.setImporters(createSolutionImporters());
@@ -163,12 +167,19 @@ public abstract class CommonApp<Solution_> extends LoggingMain {
             }    
 */
     protected SolverFactory<Solution_> createSolverFactory() {
-        return SolverFactory.createFromXmlResource(solverConfigResource);
-        /*SolverConfig solverConfig = SolverConfig.createFromXmlResource("org/optaplanner/examples/nqueens/solver/nqueensSolverConfig.xml");
+        //return SolverFactory.createFromXmlResource(solverConfigResource);
+        SolverConfig solverConfig = SolverConfig.createFromXmlResource(solverConfigResource); //"org/optaplanner/examples/nqueens/solver/nqueensSolverConfig.xml");
         solverConfig.withTerminationConfig(new TerminationConfig()
-                    .withMinutesSpentLimit(userInput));
-
-        return SolverFactory.create(solverConfig);*/
+                    .withSecondsSpentLimit(secondsSpentLimit)
+                    .withUnimprovedSecondsSpentLimit(unimprovedSecondsSpentLimit));
+                    
+                    
+                    //    template = SolverConfig.createFromXmlResource(
+                    //            "org/optaplanner/examples/nqueens/solver/nqueensSolverConfig.xml");
+                    //    template.setTerminationConfig(new TerminationConfig());
+                    
+        template = solverConfig; 
+        return SolverFactory.create(solverConfig);
 
     }
 

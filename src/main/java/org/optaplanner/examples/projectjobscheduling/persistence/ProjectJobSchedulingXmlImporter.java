@@ -142,6 +142,13 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
                 schedule.setTermination(stermination);
             }    
 
+            Element optimizOperationElement = rootElement.getChild("OptimizationOperation");
+            String soptimizationOperation = "903";
+            if (optimizOperationElement != null) {
+                soptimizationOperation = optimizOperationElement.getText();
+                schedule.setOptimizationOperation(soptimizationOperation);
+            }    
+
             readResourceList(rootElement.getChild("ResourceList"));
             readOperationList(rootElement.getChild("OperationList"));
             readZakazList(rootElement.getChild("ZakazList"));            

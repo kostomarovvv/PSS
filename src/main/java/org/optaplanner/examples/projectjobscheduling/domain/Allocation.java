@@ -50,6 +50,9 @@ public class Allocation extends AbstractPersistable {
 
     // Shadow variables
     private Integer predecessorsDoneDate;
+    private boolean pinned;
+
+    //private int rightDelta;
 
     public Job getJob() {
         return job;
@@ -160,6 +163,36 @@ public class Allocation extends AbstractPersistable {
         return "Job " + job.getId();
     }
 
+    public int getRightDelta() {
+        int delta = 0;        
+        if (successorAllocationList.size() == 0) return 0;
+        Allocation succAlloc = successorAllocationList.get(0);
+        int maxEndDate = 0;
+        for (Allocation predAlloc: succAlloc.getPredecessorAllocationList()) {
+            if (predAlloc.getEndDate() > maxEndDate) 
+                maxEndDate = predAlloc.getEndDate();            
+        }
+        if (getEndDate() < maxEndDate) 
+            delta = maxEndDate - getEndDate();        
+        return delta;
+    }
+
+    public int getStage() {
+        return job.getProject().getSchedule().getStage();
+    }
+
+    public boolean getPinned() {
+        return this.pinned;
+    }
+
+    public void setPinned(boolean pinned) {
+        this.pinned = pinned;
+    }
+
+    public boolean getIsOptimizationJob() {
+        return job.getOID().equals(job.getProject().getSchedule().getOptimizationOperation());
+    }
+
     // ************************************************************************
     // Ranges
     // ************************************************************************
@@ -171,7 +204,7 @@ public class Allocation extends AbstractPersistable {
 
     @ValueRangeProvider(id = "delayRange")
     public CountableValueRange<Integer> getDelayRange() {
-        return ValueRangeFactory.createIntValueRange(0, 720);
+        return ValueRangeFactory.createIntValueRange(0, 2000);
     }
 
 }
