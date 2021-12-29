@@ -190,7 +190,22 @@ public class Allocation extends AbstractPersistable {
     }
 
     public boolean getIsOptimizationJob() {
-        return job.getOID().equals(job.getProject().getSchedule().getOptimizationOperation());
+        boolean res = false;
+        res = job.getOID().equals(job.getProject().getSchedule().getOptimizationOperation());
+        return res;
+    }
+
+    public boolean getIsOutOfRange() {
+        boolean res = false;
+        int maxEndDate = 0;
+        for (Allocation allocation : getSuccessorAllocationList().get(0).getPredecessorAllocationList()) {
+            if ((allocation != this) && (allocation.getEndDate() > maxEndDate))
+                maxEndDate = allocation.getEndDate();
+        }
+        if ((maxEndDate > 0) && (this.getEndDate() > maxEndDate))
+            res = true;
+
+        return res;
     }
 
     // ************************************************************************

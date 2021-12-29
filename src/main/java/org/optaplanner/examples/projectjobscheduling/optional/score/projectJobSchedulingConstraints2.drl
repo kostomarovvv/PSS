@@ -70,8 +70,6 @@ end
 // ############################################################################
 
 
-
-
 rule "totalProjectDelay"
     when
         Allocation(jobType == JobType.SINK, endDate != null, $endDate : endDate,
@@ -103,13 +101,12 @@ end
 */
 
 rule "checkSink"
-    when
-        $project: Project()
-        Allocation(project == $project, jobType == JobType.SINK, $endDateSink : endDate)
-        Allocation(project == $project, jobType == JobType.STANDARD, isOptimizationJob == true, $endDateOptim : endDate)        
+    when  
+        Allocation(jobType == JobType.STANDARD, isOptimizationJob == true, isOutOfRange == true)      
+        //Allocation($project: project, jobType == JobType.SINK, $endDateSink : endDate)
+        //Allocation(project == $project, jobType == JobType.STANDARD,  endDate > $endDateSink)        //isOptimizationJob == true,
     then
-        if ($endDateSink < $endDateOptim)
-            scoreHolder.addHardConstraintMatch(kcontext, - 1000);
+        scoreHolder.addHardConstraintMatch(kcontext, - 1000);
 end
 
 rule "operationsRightDelta"

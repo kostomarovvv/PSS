@@ -88,8 +88,8 @@ public class PredecessorsDoneDateUpdatingVariableListener implements VariableLis
     protected boolean updatePredecessorsDoneDate(ScoreDirector<Schedule> scoreDirector, Allocation allocation) {
         // For the source the doneDate must be 0.
         Integer doneDate = 0;
-        if (allocation.getStage() == 2)
-            return false;
+        //*if (allocation.getStage() == 2)
+        //*    return false;
         //Integer predDoneDate = 0;
         for (Allocation predecessorAllocation : allocation.getPredecessorAllocationList()) {
             int endDate = predecessorAllocation.getEndDate();

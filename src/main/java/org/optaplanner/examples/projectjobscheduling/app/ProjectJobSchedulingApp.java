@@ -177,7 +177,8 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
             //*Schedule solvedSchedule = solver1.solve(projectSchedule);
             //*solutionBusiness.setSolution(solvedSchedule);
             Schedule solvedSchedule = solutionBusiness.solve(projectSchedule);  
-            solvedSchedule.setStage(2);                
+            solvedSchedule.setStage(2);   
+            //projectSchedule.setStage(2);             
             Schedule solvedSchedule2 = solver2.solve(solvedSchedule);
             //Schedule solvedSchedule2 = solutionBusiness.solve(solvedSchedule);    
             solutionBusiness.setSolution(solvedSchedule2);                           

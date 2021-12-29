@@ -15,7 +15,7 @@
             "name": "Launch ProjectJobSchedulingApp",
             "request": "launch",
             "mainClass": "org.optaplanner.examples.projectjobscheduling.app.ProjectJobSchedulingApp",
-            "args": "d:\\Workspace_PSS\\PSS\\data\\projectjobscheduling\\import\\test_57457_small.xml TS60;US10;" //""
+            "args": "d:\\Workspace_PSS\\PSS\\data\\projectjobscheduling\\import\\test_57457_small.xml TS60;US10;" 
             //"vmArgs": "-Dlogback.level.org.optaplanner=trace d:\\Workspace_PSS\\PSS\\data\\projectjobscheduling\\import\\test_57457_small.xml TS60;US10;" //""
         }
     ]
