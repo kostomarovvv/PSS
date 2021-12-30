@@ -297,6 +297,7 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
 
                     initJobList(project);
                     readExecmodeList(project, zakazElement.getChild("ExecModeList"));
+                    checkNullExecModes(project);
 
                     project.setReleaseDate(0);
                     int calcDuration = getCalcDuration(project);
@@ -426,6 +427,25 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
                 res += exMode.getDuration();
             }
             return res / 2;
+        }
+
+        private void checkNullExecModes(Project project) {
+            for(Job job: project.getJobList()) {
+                //int num = job.getExecutionModeList().size();
+                if (job.getExecutionModeList() == null) {
+                    List<ExecutionMode> executionJobModeList = new ArrayList<ExecutionMode>(1);
+                    job.setExecutionModeList(executionJobModeList);
+                    ExecutionMode executionMode = new ExecutionMode();                                           
+                    executionMode.setId(executionModeId);
+                    executionModeId++;   
+                    executionMode.setJob(job);                 
+                    executionMode.setDuration(0);
+                    List<ResourceRequirement> resourceRequirementList = new ArrayList<ResourceRequirement>(0);
+                    executionMode.setResourceRequirementList(resourceRequirementList); 
+                    job.getExecutionModeList().add(executionMode);
+                    schedule.getExecutionModeList().add(executionMode);
+                }
+            }            
         }
 
 

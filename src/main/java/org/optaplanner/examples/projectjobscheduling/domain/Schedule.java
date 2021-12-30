@@ -17,8 +17,10 @@
 package org.optaplanner.examples.projectjobscheduling.domain;
 
 import java.util.List;
-
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Comparator;
 
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningScore;
@@ -195,6 +197,55 @@ public class Schedule extends AbstractPersistable {
     public void setOptimizationOperation(String optimizationOperation) {
         this.optimizationOperation = optimizationOperation;
     }
+
+    Comparator<Allocation> compareByEndDate = new Comparator<Allocation>() {
+        @Override
+        public int compare(Allocation o1, Allocation o2) {
+            return o1.getEndDate().compareTo(o2.getEndDate());
+        }
+    };
+
+    public void checkRightDelta() {
+        List<Allocation> sinkAllocationList = new ArrayList<>(allocationList.size());        
+        for (Allocation allocation : allocationList) {
+            if (allocation.getJobType() == JobType.SINK)
+                sinkAllocationList.add(allocation);
+        }
+        int curEndDate = sinkAllocationList.get(0).getEndDate();
+        Collections.sort(sinkAllocationList, compareByEndDate.reversed());
+        curEndDate = sinkAllocationList.get(0).getEndDate();
+
+        for (Allocation allocation : sinkAllocationList) {
+            Allocation optimAllocation = null;
+            if (allocation.getEndDate() < curEndDate) {
+                curEndDate = allocation.getEndDate();
+            }
+            int startDate = allocation.getEndDate();
+            for (Allocation predAllocation : allocation.getPredecessorAllocationList()) {
+                if (predAllocation.getEndDate() < curEndDate) { 
+                    predAllocation.setDelay(predAllocation.getDelay() + curEndDate - predAllocation.getEndDate()); 
+                }
+                if (predAllocation.getIsOptimizationJob()) {
+                    optimAllocation = predAllocation;
+                }
+                if (predAllocation.getStartDate() < startDate) {
+                    startDate = predAllocation.getStartDate();
+                }
+            }     
+            if (optimAllocation != null) {
+                curEndDate = optimAllocation.getStartDate();        
+            }
+            for (Allocation predAllocation : allocation.getPredecessorAllocationList()) {
+                for (Allocation predpredAllocation : predAllocation.getPredecessorAllocationList()) {
+                    if (predpredAllocation.getEndDate() < startDate) {
+                        predpredAllocation.setDelay(predpredAllocation.getDelay() + startDate - predpredAllocation.getEndDate());
+                    }
+            }
+            }
+        }
+
+    }     
+    
 
 	     
     // ************************************************************************

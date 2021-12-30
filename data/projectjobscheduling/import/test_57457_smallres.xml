@@ -2,7 +2,7 @@
 <Solution>
   <SchedulingID />
   <HardConstraintsPenalty>0</HardConstraintsPenalty>
-  <SoftConstraintsPenalty1>-81</SoftConstraintsPenalty1>
+  <SoftConstraintsPenalty1>-62</SoftConstraintsPenalty1>
   <SoftConstraintsPenalty2>-137</SoftConstraintsPenalty2>
   <AllocationTotalList>
     <Allocation>

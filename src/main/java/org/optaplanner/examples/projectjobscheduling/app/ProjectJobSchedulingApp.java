@@ -158,30 +158,32 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
 
                 
             //*SolverConfig solverConfig1 = new SolverConfig(template); // 
-            SolverConfig solverConfig2 = SolverConfig.createFromXmlResource(SOLVER_CONFIG2); //"org/optaplanner/examples/nqueens/solver/nqueensSolverConfig.xml");
+//*            SolverConfig solverConfig2 = SolverConfig.createFromXmlResource(SOLVER_CONFIG2); //"org/optaplanner/examples/nqueens/solver/nqueensSolverConfig.xml");
             ///solverConfig1.getTerminationConfig().setSecondsSpentLimit(secondsSpentLimit);
             ///solverConfig1.getTerminationConfig().setUnimprovedSecondsSpentLimit(unimprovedSecondsSpentLimit);
 
-            solverConfig2.withTerminationConfig(new TerminationConfig()
+/**             solverConfig2.withTerminationConfig(new TerminationConfig()
                     .withSecondsSpentLimit(secondsSpentLimit)
                     .withUnimprovedSecondsSpentLimit(unimprovedSecondsSpentLimit));                   
         
             SolverFactory<Schedule> solverFactory2 = SolverFactory.create(solverConfig2);
             Solver<Schedule> solver2 = solverFactory2.buildSolver();
-
+*/
             // import solution
             solutionBusiness.importSolution(f);
             // calculate route
             Schedule projectSchedule = solutionBusiness.getSolution(); 
-            projectSchedule.setStage(1);                          
+//*            projectSchedule.setStage(1);                          
             //*Schedule solvedSchedule = solver1.solve(projectSchedule);
             //*solutionBusiness.setSolution(solvedSchedule);
             Schedule solvedSchedule = solutionBusiness.solve(projectSchedule);  
-            solvedSchedule.setStage(2);   
+            solvedSchedule.checkRightDelta();
+//*            Schedule solvedSchedule = solutionBusiness.solve(projectSchedule);  
+//*            solvedSchedule.setStage(2);   
             //projectSchedule.setStage(2);             
-            Schedule solvedSchedule2 = solver2.solve(solvedSchedule);
+//*            Schedule solvedSchedule2 = solver2.solve(solvedSchedule);
             //Schedule solvedSchedule2 = solutionBusiness.solve(solvedSchedule);    
-            solutionBusiness.setSolution(solvedSchedule2);                           
+            solutionBusiness.setSolution(solvedSchedule); 
                                 
             // save result
             fres = new File(FilenameUtils.getFullPath(pFile), FilenameUtils.getBaseName(pFile) + "res.xml");                
