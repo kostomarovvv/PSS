@@ -235,13 +235,13 @@ public class Schedule extends AbstractPersistable {
             if (optimAllocation != null) {
                 curEndDate = optimAllocation.getStartDate();        
             }
-            for (Allocation predAllocation : allocation.getPredecessorAllocationList()) {
+            /*for (Allocation predAllocation : allocation.getPredecessorAllocationList()) {
                 for (Allocation predpredAllocation : predAllocation.getPredecessorAllocationList()) {
                     if (predpredAllocation.getEndDate() < startDate) {
                         predpredAllocation.setDelay(predpredAllocation.getDelay() + startDate - predpredAllocation.getEndDate());
                     }
-            }
-            }
+                }
+            }*/
         }
 
     }     

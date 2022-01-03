@@ -145,8 +145,8 @@
       <Id>Allocation-11</Id>
       <OID>901</OID>
       <ResourceList />
-      <StartDate>2021-12-29 08:19:00</StartDate>
-      <EndDate>2021-12-29 08:19:00</EndDate>
+      <StartDate>2021-12-29 08:00:00</StartDate>
+      <EndDate>2021-12-29 08:00:00</EndDate>
       <Quantity>0</Quantity>
       <PredAllocationList>
         <PredAllocation>Allocation-10</PredAllocation>
@@ -273,8 +273,8 @@
       <ResourceList>
         <Resource>51</Resource>
       </ResourceList>
-      <StartDate>2021-12-29 13:27:00</StartDate>
-      <EndDate>2021-12-29 15:02:00</EndDate>
+      <StartDate>2021-12-29 13:10:00</StartDate>
+      <EndDate>2021-12-29 14:45:00</EndDate>
       <Quantity>95</Quantity>
       <PredAllocationList>
         <PredAllocation>Allocation-20</PredAllocation>
