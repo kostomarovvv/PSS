@@ -795,4 +795,10 @@ public class SolverAndPersistenceFrame<Solution_> extends JFrame {
         }
 
     }
+
+    public void refreshPanel(Solution_ solution) {
+        this.setSolutionLoaded(null);
+        //this.solutionPanel.resetPanel(solution);
+        //this.solutionPanel.updatePanel(solution);
+    }
 }

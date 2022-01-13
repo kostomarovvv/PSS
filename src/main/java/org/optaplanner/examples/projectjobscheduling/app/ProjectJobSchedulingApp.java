@@ -184,6 +184,9 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
 //*            Schedule solvedSchedule2 = solver2.solve(solvedSchedule);
             //Schedule solvedSchedule2 = solutionBusiness.solve(solvedSchedule);    
             solutionBusiness.setSolution(solvedSchedule); 
+
+            ///*solverAndPersistenceFrame.refreshPanel(solvedSchedule);
+            //*solverAndPersistenceFrame.setSolutionLoaded(null);
                                 
             // save result
             fres = new File(FilenameUtils.getFullPath(pFile), FilenameUtils.getBaseName(pFile) + "res.xml");                
@@ -192,6 +195,7 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
                 
             today = Calendar.getInstance().getTime(); 
             System.out.println("end query " + df.format(today));
+            
         } catch(Exception e){
            // if any error occurs
            e.printStackTrace();

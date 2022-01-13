@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Solution>
   <SchedulingID />
-  <HardConstraintsPenalty>-46</HardConstraintsPenalty>
-  <SoftConstraintsPenalty1>-789</SoftConstraintsPenalty1>
+  <HardConstraintsPenalty>0</HardConstraintsPenalty>
+  <SoftConstraintsPenalty1>-437</SoftConstraintsPenalty1>
   <SoftConstraintsPenalty2>-504</SoftConstraintsPenalty2>
   <AllocationTotalList>
     <Allocation>
@@ -35,8 +35,8 @@
       <ResourceList>
         <Resource>50</Resource>
       </ResourceList>
-      <StartDate>2021-12-29 11:07:00</StartDate>
-      <EndDate>2021-12-29 11:25:00</EndDate>
+      <StartDate>2021-12-29 11:09:00</StartDate>
+      <EndDate>2021-12-29 11:27:00</EndDate>
       <Quantity>18</Quantity>
       <PredAllocationList>
         <PredAllocation>Allocation-1</PredAllocation>
@@ -98,8 +98,8 @@
       <ResourceList>
         <Resource>50</Resource>
       </ResourceList>
-      <StartDate>2021-12-30 14:46:00</StartDate>
-      <EndDate>2021-12-30 15:05:00</EndDate>
+      <StartDate>2021-12-29 08:00:00</StartDate>
+      <EndDate>2021-12-29 08:19:00</EndDate>
       <Quantity>19</Quantity>
       <PredAllocationList>
         <PredAllocation>Allocation-6</PredAllocation>
@@ -110,8 +110,8 @@
       <Id>Allocation-8</Id>
       <OID>902</OID>
       <ResourceList />
-      <StartDate>2021-12-29 08:00:00</StartDate>
-      <EndDate>2021-12-29 08:00:00</EndDate>
+      <StartDate>2021-12-29 08:19:00</StartDate>
+      <EndDate>2021-12-29 08:19:00</EndDate>
       <Quantity>0</Quantity>
       <PredAllocationList>
         <PredAllocation>Allocation-6</PredAllocation>
@@ -159,8 +159,8 @@
       <ResourceList>
         <Resource>50</Resource>
       </ResourceList>
-      <StartDate>2021-12-29 13:56:00</StartDate>
-      <EndDate>2021-12-29 13:58:00</EndDate>
+      <StartDate>2021-12-29 08:19:00</StartDate>
+      <EndDate>2021-12-29 08:21:00</EndDate>
       <Quantity>2</Quantity>
       <PredAllocationList>
         <PredAllocation>Allocation-11</PredAllocation>
@@ -171,8 +171,8 @@
       <Id>Allocation-13</Id>
       <OID>902</OID>
       <ResourceList />
-      <StartDate>2021-12-29 08:00:00</StartDate>
-      <EndDate>2021-12-29 08:00:00</EndDate>
+      <StartDate>2021-12-29 08:21:00</StartDate>
+      <EndDate>2021-12-29 08:21:00</EndDate>
       <Quantity>0</Quantity>
       <PredAllocationList>
         <PredAllocation>Allocation-11</PredAllocation>
@@ -222,8 +222,8 @@
       <ResourceList>
         <Resource>50</Resource>
       </ResourceList>
-      <StartDate>2021-12-29 14:29:00</StartDate>
-      <EndDate>2021-12-29 14:59:00</EndDate>
+      <StartDate>2021-12-29 14:32:00</StartDate>
+      <EndDate>2021-12-29 15:02:00</EndDate>
       <Quantity>30</Quantity>
       <PredAllocationList>
         <PredAllocation>Allocation-16</PredAllocation>
@@ -287,8 +287,8 @@
       <ResourceList>
         <Resource>50</Resource>
       </ResourceList>
-      <StartDate>2021-12-29 15:51:00</StartDate>
-      <EndDate>2021-12-29 16:23:00</EndDate>
+      <StartDate>2021-12-29 15:52:00</StartDate>
+      <EndDate>2021-12-29 16:24:00</EndDate>
       <Quantity>32</Quantity>
       <PredAllocationList>
         <PredAllocation>Allocation-21</PredAllocation>

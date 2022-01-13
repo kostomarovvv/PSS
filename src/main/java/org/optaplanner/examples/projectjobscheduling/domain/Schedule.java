@@ -201,7 +201,8 @@ public class Schedule extends AbstractPersistable {
     Comparator<Allocation> compareByEndDate = new Comparator<Allocation>() {
         @Override
         public int compare(Allocation o1, Allocation o2) {
-            return o1.getEndDate().compareTo(o2.getEndDate());
+            return o1.getOptimizationJob().getEndDate().compareTo(o2.getOptimizationJob().getEndDate());
+            //return o1.getEndDate().compareTo(o2.getEndDate());
         }
     };
 

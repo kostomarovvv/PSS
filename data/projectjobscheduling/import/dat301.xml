@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="WINDOWS-1251"?>
+<TranspZakaz><StartDate>2021-12-29 08:00:00</StartDate><EndDate>2021-12-29 20:00:00</EndDate><Termination>TS180;US10</Termination><OptimizationOperation>903</OptimizationOperation>
+<ResourceList><Resource><RID>51</RID><Quantity>2</Quantity></Resource><Resource><RID>52</RID><Quantity>1</Quantity></Resource><Resource><RID>50</RID><Quantity>1</Quantity></Resource></ResourceList><OperationList><Operation><OID>SOURCE</OID><SuccessorList><Successor>901</Successor></SuccessorList></Operation><Operation><OID>901</OID><SuccessorList><Successor>902</Successor><Successor>903</Successor></SuccessorList></Operation><Operation><OID>903</OID><SuccessorList><Successor>SINK</Successor></SuccessorList></Operation><Operation><OID>902</OID><SuccessorList><Successor>SINK</Successor></SuccessorList></Operation><Operation><OID>SINK</OID><SuccessorList></SuccessorList></Operation></OperationList>
+<ZakazList>
+<Zakaz><ZID>1170428</ZID><Priority>0</Priority><ExecModeList>
+<ExecMode><OID>SOURCE</OID><EMID></EMID><Duration>0</Duration><ResourceList></ResourceList></ExecMode>
+<ExecMode><OID>901</OID><Duration>135</Duration><ResourceList><Resource><RID>51</RID><Quantity>2</Quantity></Resource></ResourceList></ExecMode>
+<ExecMode><OID>902</OID><Duration>72</Duration><ResourceList><Resource><RID>52</RID><Quantity>1</Quantity></Resource></ResourceList></ExecMode>
+<ExecMode><OID>903</OID><Duration>18</Duration><ResourceList><Resource><RID>50</RID><Quantity>1</Quantity></Resource></ResourceList></ExecMode>
+<ExecMode><OID>SINK</OID><EMID></EMID><Duration>0</Duration><ResourceList></ResourceList></ExecMode></ExecModeList></Zakaz>
+</ZakazList></TranspZakaz>

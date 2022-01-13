@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Solution>
+  <SchedulingID />
+  <HardConstraintsPenalty>0</HardConstraintsPenalty>
+  <SoftConstraintsPenalty1>-95</SoftConstraintsPenalty1>
+  <SoftConstraintsPenalty2>-207</SoftConstraintsPenalty2>
+  <AllocationTotalList>
+    <Allocation>
+      <Id>Allocation-0</Id>
+      <OID>SOURCE</OID>
+      <ResourceList />
+      <StartDate>2021-12-29 08:00:00</StartDate>
+      <EndDate>2021-12-29 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <PredAllocationList />
+      <Zakaz>1170428</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-1</Id>
+      <OID>901</OID>
+      <ResourceList>
+        <Resource>51</Resource>
+      </ResourceList>
+      <StartDate>2021-12-29 08:00:00</StartDate>
+      <EndDate>2021-12-29 10:15:00</EndDate>
+      <Quantity>135</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-0</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1170428</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-2</Id>
+      <OID>903</OID>
+      <ResourceList>
+        <Resource>50</Resource>
+      </ResourceList>
+      <StartDate>2021-12-29 11:09:00</StartDate>
+      <EndDate>2021-12-29 11:27:00</EndDate>
+      <Quantity>18</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-1</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1170428</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-3</Id>
+      <OID>902</OID>
+      <ResourceList>
+        <Resource>52</Resource>
+      </ResourceList>
+      <StartDate>2021-12-29 10:15:00</StartDate>
+      <EndDate>2021-12-29 11:27:00</EndDate>
+      <Quantity>72</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-1</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1170428</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-4</Id>
+      <OID>SINK</OID>
+      <ResourceList />
+      <StartDate>2021-12-29 11:27:00</StartDate>
+      <EndDate>2021-12-29 11:27:00</EndDate>
+      <Quantity>0</Quantity>
+      <PredAllocationList>
+        <PredAllocation>Allocation-2</PredAllocation>
+        <PredAllocation>Allocation-3</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1170428</Zakaz>
+    </Allocation>
+  </AllocationTotalList>
+</Solution>
+
