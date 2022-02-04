@@ -17,9 +17,12 @@
 package org.optaplanner.examples.projectjobscheduling.domain.resource;
 
 import org.optaplanner.examples.common.domain.AbstractPersistable;
+import org.optaplanner.examples.projectjobscheduling.domain.TimeRestriction;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamInclude;
+
+import java.util.List;
 
 @XStreamAlias("PjsResource")
 @XStreamInclude({
@@ -31,6 +34,7 @@ public abstract class Resource extends AbstractPersistable {
     private int capacity;
 
     private String RID;
+    private List<TimeRestriction> timeRestrictionList;
 
     public int getCapacity() {
         return capacity;
@@ -38,6 +42,17 @@ public abstract class Resource extends AbstractPersistable {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public int getUsedDayCapacity(int usedDay) {
+        int resCapacity = capacity;
+        for (TimeRestriction timeRestriction : getTimeRestrictionList()) {
+            if ((usedDay >= timeRestriction.getStartRestriction()) && (usedDay < timeRestriction.getEndRestriction())) {
+                resCapacity = timeRestriction.getQuantity();
+                break;
+            }
+        }
+        return resCapacity;
     }
 
     public String getRID() {
@@ -48,6 +63,14 @@ public abstract class Resource extends AbstractPersistable {
         this.RID = RID;
     }
     
+    public List<TimeRestriction> getTimeRestrictionList() {
+        return this.timeRestrictionList;
+    }
+
+    public void setTimeRestrictionList(List<TimeRestriction> timeRestrictionList) {
+        this.timeRestrictionList = timeRestrictionList;
+    }
+
     // ************************************************************************
     // Complex methods
     // ************************************************************************

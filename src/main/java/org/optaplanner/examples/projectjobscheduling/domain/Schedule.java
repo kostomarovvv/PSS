@@ -42,7 +42,7 @@ public class Schedule extends AbstractPersistable {
     private List<Job> jobList;
     private List<ExecutionMode> executionModeList;
     private List<Resource> resourceList;
-    private List<ResourceRequirement> resourceRequirementList;
+    private List<ResourceRequirement> resourceRequirementList;    
 
     private List<Allocation> allocationList;
 
@@ -103,7 +103,7 @@ public class Schedule extends AbstractPersistable {
     public void setResourceRequirementList(List<ResourceRequirement> resourceRequirementList) {
         this.resourceRequirementList = resourceRequirementList;
     }
-
+      
     @PlanningEntityCollectionProperty
     public List<Allocation> getAllocationList() {
         return allocationList;

@@ -59,25 +59,30 @@ public class PredecessorsDoneDateUpdatingVariableListener implements VariableLis
     }
 
     protected void updateAllocation(ScoreDirector<Schedule> scoreDirector, Allocation originalAllocation) {
-        Queue<Allocation> uncheckedSuccessorQueue = new ArrayDeque<>();
-        uncheckedSuccessorQueue.addAll(originalAllocation.getSuccessorAllocationList());
-        while (!uncheckedSuccessorQueue.isEmpty()) {
-            Allocation allocation = uncheckedSuccessorQueue.remove();
-            boolean updated = updatePredecessorsDoneDate(scoreDirector, allocation);            
-            if (updated) {
-                uncheckedSuccessorQueue.addAll(allocation.getSuccessorAllocationList());
+        //if (originalAllocation.getStage() == 1) {
+            Queue<Allocation> uncheckedSuccessorQueue = new ArrayDeque<>();
+            uncheckedSuccessorQueue.addAll(originalAllocation.getSuccessorAllocationList());
+            while (!uncheckedSuccessorQueue.isEmpty()) {
+                Allocation allocation = uncheckedSuccessorQueue.remove();
+                boolean updated = updatePredecessorsDoneDate(scoreDirector, allocation);            
+                if (updated) {
+                    uncheckedSuccessorQueue.addAll(allocation.getSuccessorAllocationList());
+                }
             }
-        }
-
-/*        Queue<Allocation> uncheckedPredecessorQueue = new ArrayDeque<>();
-        uncheckedPredecessorQueue.addAll(originalAllocation.getPredecessorAllocationList());
-        while (!uncheckedPredecessorQueue.isEmpty()) {
-            Allocation allocation = uncheckedPredecessorQueue.remove();
-            boolean updated = updateSuccessorsDoneDate(scoreDirector, allocation);
-            if (updated) {
-//                uncheckedPredecessorQueue.addAll(allocation.getPredecessorAllocationList());
+        //}
+/*
+        if (originalAllocation.getStage() == 2) {
+            Queue<Allocation> uncheckedPredecessorQueue = new ArrayDeque<>();
+            uncheckedPredecessorQueue.addAll(originalAllocation.getPredecessorAllocationList());
+            while (!uncheckedPredecessorQueue.isEmpty()) {
+                Allocation allocation = uncheckedPredecessorQueue.remove();
+                boolean updated = updateDelayStartDate(scoreDirector, allocation);
+                if (updated) {
+                    uncheckedPredecessorQueue.addAll(allocation.getPredecessorAllocationList());
+                }
             }
-        }       */ 
+        }       
+*/
     }
 
     /**
@@ -116,22 +121,46 @@ public class PredecessorsDoneDateUpdatingVariableListener implements VariableLis
         return true;
     }
     
-/*    protected boolean updateSuccessorsDoneDate(ScoreDirector<Schedule> scoreDirector, Allocation allocation) {
-        // For the source the doneDate must be 0.
-        Integer doneDate = 100000;
-        for (Allocation successorAllocation : allocation.getSuccessorAllocationList()) {
-            if (allocation.getJobType() == JobType.SOURCE) break;
-            Integer minDelay = successorAllocation.getDelay();
-            if (minDelay == null) minDelay = 0;
-            doneDate = Math.min(doneDate, minDelay);
+    protected boolean updateDelayStartDate(ScoreDirector<Schedule> scoreDirector, Allocation allocation) {        
+        Integer doneDate = 0; //allocation.getSinkAllocation().getEndDate();
+        Allocation successorAllocation = allocation.getSuccessorAllocationList().get(0);
+        for (Allocation predSuccessorAllocation : successorAllocation.getPredecessorAllocationList()) {
+            int endDate = predSuccessorAllocation.getEndDate();
+            doneDate = Math.max(doneDate, endDate);         
         }
-        if ((doneDate == 0) || (doneDate == 100000)) { //(Objects.equals(doneDate, allocation.getDelay())) {
+        if (Objects.equals(doneDate, allocation.getPredecessorsDoneDate())) { 
             return false;
         }
+        //*int delay = allocation.getDelay() + doneDate - allocation.getEndDate();
+        if (allocation.getEndDate() >= doneDate) 
+            return false;        
+        int predDoneDate = allocation.getPredecessorsDoneDate() + doneDate - allocation.getEndDate();
+/*
+        Allocation optimAllocation = null;
+        if (allocation.getEndDate() < curEndDate) {
+            curEndDate = allocation.getEndDate();
+        }
+        int startDate = allocation.getEndDate();
+        for (Allocation predAllocation : allocation.getPredecessorAllocationList()) {
+            if (predAllocation.getEndDate() < curEndDate) { 
+                predAllocation.setDelay(predAllocation.getDelay() + curEndDate - predAllocation.getEndDate()); 
+            }
+            if (predAllocation.getIsOptimizationJob()) {
+                optimAllocation = predAllocation;
+            }
+            if (predAllocation.getStartDate() < startDate) {
+                startDate = predAllocation.getStartDate();
+            }
+        }     
+        if (optimAllocation != null) {
+            curEndDate = optimAllocation.getStartDate();        
+        }
+*/                
         scoreDirector.beforeVariableChanged(allocation, "predecessorsDoneDate");
         //Integer delta = doneDate - allocation.getEndDate();
-        allocation.setPredecessorsDoneDate(allocation.getPredecessorsDoneDate() + doneDate);
+        allocation.setPredecessorsDoneDate(predDoneDate);
+        allocation.setDelay(0);
         scoreDirector.afterVariableChanged(allocation, "predecessorsDoneDate");
         return true;
-    }*/
+    }
 }

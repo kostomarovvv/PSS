@@ -32,6 +32,7 @@ import org.optaplanner.examples.common.business.SolutionBusiness;
 import org.optaplanner.examples.common.app.CommonApp;
 import org.optaplanner.examples.projectjobscheduling.domain.ResourceRequirement;
 import org.optaplanner.examples.projectjobscheduling.domain.JobType;
+import org.optaplanner.examples.projectjobscheduling.domain.TimeRestriction;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -158,16 +159,7 @@ public class ProjectJobSchedulingXmlExporter extends AbstractXmlSolutionExporter
             	Element allocOperationElement = new Element("OID");
             	allocOperationElement.setText(allocation.getJob().getOID());
             	allocationElement.addContent(allocOperationElement);
-            	
-            	Element resReqListElement = new Element("ResourceList");
-            	allocationElement.addContent(resReqListElement);
-            	
-            	for (ResourceRequirement resReq: allocation.getExecutionMode().getResourceRequirementList()) {
-            		Element machReqElement = new Element("Resource");
-                	machReqElement.setText(resReq.getResource().getRID());
-                	resReqListElement.addContent(machReqElement);
-            	}
-          	
+           	
                 Calendar calendar = Calendar.getInstance();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -199,6 +191,20 @@ public class ProjectJobSchedulingXmlExporter extends AbstractXmlSolutionExporter
             	Element quantityElement = new Element("Quantity");
             	quantityElement.setText(Integer.toString(allocation.getExecutionMode().getDuration()));
             	allocationElement.addContent(quantityElement);
+
+            	Element resReqListElement = new Element("ResourceList");
+            	allocationElement.addContent(resReqListElement);
+            	
+            	for (ResourceRequirement resReq: allocation.getExecutionMode().getResourceRequirementList()) {
+            		Element resReqElement = new Element("Resource");
+                    Element ridElement = new Element("RID");
+                    ridElement.setText(resReq.getResource().getRID());
+                    resReqElement.addContent(ridElement);
+                    Element resQuantityElement = new Element("Quantity");                        
+                    resQuantityElement.setText(Integer.toString(resReq.getRequirement()));
+                    resReqElement.addContent(resQuantityElement);                	
+                	resReqListElement.addContent(resReqElement);
+            	}                
             	
             	Element predAllocListElement = new Element("PredAllocationList");
             	allocationElement.addContent(predAllocListElement);

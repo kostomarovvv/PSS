@@ -1,0 +1,1085 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Solution>
+  <SchedulingID />
+  <HardConstraintsPenalty>0</HardConstraintsPenalty>
+  <SoftConstraintsPenalty1>-673</SoftConstraintsPenalty1>
+  <SoftConstraintsPenalty2>-793</SoftConstraintsPenalty2>
+  <AllocationTotalList>
+    <Allocation>
+      <Id>Allocation-0</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1187130</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-1</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-0</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187130</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-2</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:19:00</EndDate>
+      <Quantity>19</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-1</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187130</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-3</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 08:19:00</StartDate>
+      <EndDate>2022-01-26 08:19:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-1</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187130</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-4</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 08:19:00</StartDate>
+      <EndDate>2022-01-26 08:19:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-2</PredAllocation>
+        <PredAllocation>Allocation-3</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187130</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-5</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1187254</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-6</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-5</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187254</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-7</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 08:19:00</StartDate>
+      <EndDate>2022-01-26 08:38:00</EndDate>
+      <Quantity>19</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-6</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187254</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-8</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 08:38:00</StartDate>
+      <EndDate>2022-01-26 08:38:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-6</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187254</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-9</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 08:38:00</StartDate>
+      <EndDate>2022-01-26 08:38:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-7</PredAllocation>
+        <PredAllocation>Allocation-8</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187254</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-10</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1185907</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-11</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-10</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185907</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-12</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 08:38:00</StartDate>
+      <EndDate>2022-01-26 09:17:00</EndDate>
+      <Quantity>39</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-11</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185907</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-13</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 08:10:00</StartDate>
+      <EndDate>2022-01-26 09:17:00</EndDate>
+      <Quantity>67</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-11</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185907</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-14</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 09:17:00</StartDate>
+      <EndDate>2022-01-26 09:17:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-12</PredAllocation>
+        <PredAllocation>Allocation-13</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185907</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-15</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1187119</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-16</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-15</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187119</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-17</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 09:17:00</StartDate>
+      <EndDate>2022-01-26 09:36:00</EndDate>
+      <Quantity>19</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-16</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187119</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-18</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 09:36:00</StartDate>
+      <EndDate>2022-01-26 09:36:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-16</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187119</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-19</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 09:36:00</StartDate>
+      <EndDate>2022-01-26 09:36:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-17</PredAllocation>
+        <PredAllocation>Allocation-18</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1187119</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-20</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1185899</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-21</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:48:00</EndDate>
+      <Quantity>48</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>7</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-20</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185899</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-22</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 09:37:00</StartDate>
+      <EndDate>2022-01-26 10:14:00</EndDate>
+      <Quantity>37</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-21</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185899</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-23</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 08:48:00</StartDate>
+      <EndDate>2022-01-26 10:14:00</EndDate>
+      <Quantity>86</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-21</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185899</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-24</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 10:14:00</StartDate>
+      <EndDate>2022-01-26 10:14:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-22</PredAllocation>
+        <PredAllocation>Allocation-23</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185899</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-25</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1185903</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-26</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 08:48:00</StartDate>
+      <EndDate>2022-01-26 09:18:00</EndDate>
+      <Quantity>30</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>7</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-25</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185903</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-27</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 10:21:00</StartDate>
+      <EndDate>2022-01-26 10:55:00</EndDate>
+      <Quantity>34</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-26</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185903</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-28</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 09:18:00</StartDate>
+      <EndDate>2022-01-26 10:55:00</EndDate>
+      <Quantity>97</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-26</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185903</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-29</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 10:55:00</StartDate>
+      <EndDate>2022-01-26 10:55:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-27</PredAllocation>
+        <PredAllocation>Allocation-28</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185903</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-30</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1185906</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-31</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 09:18:00</StartDate>
+      <EndDate>2022-01-26 09:59:00</EndDate>
+      <Quantity>41</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>7</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-30</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185906</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-32</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 11:12:00</StartDate>
+      <EndDate>2022-01-26 11:45:00</EndDate>
+      <Quantity>33</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-31</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185906</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-33</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 09:59:00</StartDate>
+      <EndDate>2022-01-26 11:45:00</EndDate>
+      <Quantity>106</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-31</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185906</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-34</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 11:45:00</StartDate>
+      <EndDate>2022-01-26 11:45:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-32</PredAllocation>
+        <PredAllocation>Allocation-33</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185906</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-35</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1185902</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-36</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 09:59:00</StartDate>
+      <EndDate>2022-01-26 10:59:00</EndDate>
+      <Quantity>60</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>7</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-35</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185902</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-37</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 11:47:00</StartDate>
+      <EndDate>2022-01-26 12:24:00</EndDate>
+      <Quantity>37</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-36</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185902</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-38</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 10:59:00</StartDate>
+      <EndDate>2022-01-26 13:13:00</EndDate>
+      <Quantity>134</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-36</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185902</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-39</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 13:13:00</StartDate>
+      <EndDate>2022-01-26 13:13:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-37</PredAllocation>
+        <PredAllocation>Allocation-38</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185902</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-40</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1185896</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-41</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 10:59:00</StartDate>
+      <EndDate>2022-01-26 11:27:00</EndDate>
+      <Quantity>28</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>7</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-40</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185896</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-42</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 12:24:00</StartDate>
+      <EndDate>2022-01-26 13:02:00</EndDate>
+      <Quantity>38</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-41</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185896</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-43</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 11:27:00</StartDate>
+      <EndDate>2022-01-26 13:02:00</EndDate>
+      <Quantity>95</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-41</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185896</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-44</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 13:02:00</StartDate>
+      <EndDate>2022-01-26 13:02:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-42</PredAllocation>
+        <PredAllocation>Allocation-43</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185896</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-45</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1185897</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-46</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 11:27:00</StartDate>
+      <EndDate>2022-01-26 12:52:00</EndDate>
+      <Quantity>85</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>7</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-45</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185897</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-47</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 13:44:00</StartDate>
+      <EndDate>2022-01-26 14:20:00</EndDate>
+      <Quantity>36</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-46</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185897</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-48</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 12:52:00</StartDate>
+      <EndDate>2022-01-26 15:32:00</EndDate>
+      <Quantity>160</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-46</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185897</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-49</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 15:32:00</StartDate>
+      <EndDate>2022-01-26 15:32:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-47</PredAllocation>
+        <PredAllocation>Allocation-48</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185897</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-50</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1186845</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-51</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 12:52:00</StartDate>
+      <EndDate>2022-01-26 13:29:00</EndDate>
+      <Quantity>37</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>4</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-50</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1186845</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-52</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 14:20:00</StartDate>
+      <EndDate>2022-01-26 14:56:00</EndDate>
+      <Quantity>36</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-51</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1186845</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-53</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 13:29:00</StartDate>
+      <EndDate>2022-01-26 14:56:00</EndDate>
+      <Quantity>87</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-51</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1186845</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-54</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 14:56:00</StartDate>
+      <EndDate>2022-01-26 14:56:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-52</PredAllocation>
+        <PredAllocation>Allocation-53</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1186845</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-55</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1186849</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-56</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 13:29:00</StartDate>
+      <EndDate>2022-01-26 15:21:00</EndDate>
+      <Quantity>112</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>3</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-55</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1186849</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-57</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 16:30:00</StartDate>
+      <EndDate>2022-01-26 16:49:00</EndDate>
+      <Quantity>19</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-56</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1186849</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-58</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 15:21:00</StartDate>
+      <EndDate>2022-01-26 16:51:00</EndDate>
+      <Quantity>90</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-56</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1186849</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-59</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 16:51:00</StartDate>
+      <EndDate>2022-01-26 16:51:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-57</PredAllocation>
+        <PredAllocation>Allocation-58</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1186849</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-60</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1185895</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-61</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 15:21:00</StartDate>
+      <EndDate>2022-01-26 15:53:00</EndDate>
+      <Quantity>32</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>7</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-60</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185895</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-62</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 16:49:00</StartDate>
+      <EndDate>2022-01-26 17:18:00</EndDate>
+      <Quantity>29</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-61</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185895</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-63</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 15:53:00</StartDate>
+      <EndDate>2022-01-26 17:18:00</EndDate>
+      <Quantity>85</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-61</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185895</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-64</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 17:18:00</StartDate>
+      <EndDate>2022-01-26 17:18:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-62</PredAllocation>
+        <PredAllocation>Allocation-63</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185895</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-65</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1185900</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-66</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 15:53:00</StartDate>
+      <EndDate>2022-01-26 17:14:00</EndDate>
+      <Quantity>81</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>7</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-65</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185900</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-67</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 19:12:00</StartDate>
+      <EndDate>2022-01-26 19:49:00</EndDate>
+      <Quantity>37</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-66</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185900</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-68</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 17:14:00</StartDate>
+      <EndDate>2022-01-26 19:49:00</EndDate>
+      <Quantity>155</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-66</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185900</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-69</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 19:49:00</StartDate>
+      <EndDate>2022-01-26 19:49:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-67</PredAllocation>
+        <PredAllocation>Allocation-68</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185900</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-70</Id>
+      <OID>SOURCE</OID>
+      <StartDate>2022-01-26 08:00:00</StartDate>
+      <EndDate>2022-01-26 08:00:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList />
+      <Zakaz>1185898</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-71</Id>
+      <OID>901</OID>
+      <StartDate>2022-01-26 17:14:00</StartDate>
+      <EndDate>2022-01-26 18:34:00</EndDate>
+      <Quantity>80</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>51</RID>
+          <Quantity>7</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-70</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185898</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-72</Id>
+      <OID>903</OID>
+      <StartDate>2022-01-26 20:34:00</StartDate>
+      <EndDate>2022-01-26 21:13:00</EndDate>
+      <Quantity>39</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>50</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-71</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185898</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-73</Id>
+      <OID>902</OID>
+      <StartDate>2022-01-26 18:34:00</StartDate>
+      <EndDate>2022-01-26 21:13:00</EndDate>
+      <Quantity>159</Quantity>
+      <ResourceList>
+        <Resource>
+          <RID>52</RID>
+          <Quantity>1</Quantity>
+        </Resource>
+      </ResourceList>
+      <PredAllocationList>
+        <PredAllocation>Allocation-71</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185898</Zakaz>
+    </Allocation>
+    <Allocation>
+      <Id>Allocation-74</Id>
+      <OID>SINK</OID>
+      <StartDate>2022-01-26 21:13:00</StartDate>
+      <EndDate>2022-01-26 21:13:00</EndDate>
+      <Quantity>0</Quantity>
+      <ResourceList />
+      <PredAllocationList>
+        <PredAllocation>Allocation-72</PredAllocation>
+        <PredAllocation>Allocation-73</PredAllocation>
+      </PredAllocationList>
+      <Zakaz>1185898</Zakaz>
+    </Allocation>
+  </AllocationTotalList>
+</Solution>
+

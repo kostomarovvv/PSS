@@ -147,7 +147,7 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
 //        File[] paths;
         
         try{    
-        	if (pFile == null) pFile = "d:\\Workspace_PSS\\PSS\\data\\projectjobscheduling\\import\\test_57457_small.xml"; //"d:\\Workspace_VR\\P1568C1-n374-k93-z375-b0-s0.vrp"; 
+        	if (pFile == null) pFile = "d:\\Workspace_PSS\\PSS\\data\\projectjobscheduling\\import\\P1570C24.xml"; //test_57457_small.xml"; //"d:\\Workspace_VR\\P1568C1-n374-k93-z375-b0-s0.vrp"; 
         	f = new File(pFile);
 
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -185,7 +185,7 @@ public class ProjectJobSchedulingApp extends CommonApp<Schedule> {
             //Schedule solvedSchedule2 = solutionBusiness.solve(solvedSchedule);    
             solutionBusiness.setSolution(solvedSchedule); 
 
-            ///*solverAndPersistenceFrame.refreshPanel(solvedSchedule);
+//***            solverAndPersistenceFrame.refreshPanel(solvedSchedule);
             //*solverAndPersistenceFrame.setSolutionLoaded(null);
                                 
             // save result

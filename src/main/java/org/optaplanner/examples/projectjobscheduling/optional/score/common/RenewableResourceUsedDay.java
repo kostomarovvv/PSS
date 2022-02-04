@@ -62,7 +62,8 @@ public class RenewableResourceUsedDay {
     }
 
     public int getResourceCapacity() {
-        return resource.getCapacity();
+        //return resource.getCapacity();
+        return resource.getUsedDayCapacity(usedDay);
     }
 
 }

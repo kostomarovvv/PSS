@@ -54,6 +54,7 @@ import org.optaplanner.examples.projectjobscheduling.domain.JobType;
 import org.optaplanner.examples.projectjobscheduling.domain.Project;
 import org.optaplanner.examples.projectjobscheduling.domain.ResourceRequirement;
 import org.optaplanner.examples.projectjobscheduling.domain.Schedule;
+import org.optaplanner.examples.projectjobscheduling.domain.TimeRestriction;
 import org.optaplanner.examples.projectjobscheduling.domain.resource.GlobalResource;
 import org.optaplanner.examples.projectjobscheduling.domain.resource.LocalResource;
 import org.optaplanner.examples.projectjobscheduling.domain.resource.Resource;
@@ -162,7 +163,6 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
             } else {
                 List<Element> resElementList = (List<Element>) resourceListElement.getChildren();
                 resourceList = new ArrayList<Resource>(resElementList.size());
-                //resourceListSize = resElementList.size();
 
                 for (Element resourceElement : resElementList) {
                     assertElementName(resourceElement, "Resource");
@@ -183,21 +183,65 @@ public class ProjectJobSchedulingXmlImporter extends AbstractXmlSolutionImporter
                     	resource.setCapacity(Integer.parseInt(squantity));
                     } catch (Exception e) {
                     	throw new IllegalArgumentException("Invalid Quantity (" + quantityElement.getText() + ").", e);
-                    }                                        
-                                   
+                    }      
+                    
+                    List<TimeRestriction> timeRestrictionList;
+                    Element restrictionListElement = resourceElement.getChild("RestrictionList");
+                    if (restrictionListElement == null) {
+                        timeRestrictionList = Collections.emptyList();
+                    } else {
+                        List<Element> timeRestrictionElementList = (List<Element>) restrictionListElement.getChildren();
+                        timeRestrictionList = new ArrayList<TimeRestriction>(timeRestrictionElementList.size());
+                        for (Element restrictionElement : timeRestrictionElementList) {
+                            assertElementName(restrictionElement, "Restriction");
+                            TimeRestriction timeRestriction = new TimeRestriction();
+
+                            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            Element startDateElement = restrictionElement.getChild("StartRestriction");
+                            Date startDate = null;
+                            if (startDateElement != null) {
+                                try {
+                                    startDate = dateFormat.parse(startDateElement.getText());                                    
+                                } catch (ParseException e) {
+                                    throw new IllegalArgumentException("Invalid StartRestriction (" + startDateElement.getText() + ").", e);
+                                }
+                            }
+
+                            Element endDateElement = restrictionElement.getChild("EndRestriction");
+                            Date endDate = null;
+                            if (endDateElement != null) {
+                                try {
+                                    endDate = dateFormat.parse(endDateElement.getText());                                    
+                                } catch (ParseException e) {
+                                    throw new IllegalArgumentException("Invalid EndRestriction (" + endDateElement.getText() + ").", e);
+                                }
+                            }   
+                
+                            int startRestriction = 0;
+                            int endRestriction = 0;
+
+                            if (startDate != null) startRestriction = ((int) startDate.getTime() - (int) schedule.getStartDate().getTime()) / 60000;
+                            if (endDate != null) endRestriction = ((int) endDate.getTime() - (int) schedule.getStartDate().getTime()) / 60000;
+
+                            timeRestriction.setStartRestriction(startRestriction);
+                            timeRestriction.setEndRestriction(endRestriction);
+
+                            Element rQuantityElement = restrictionElement.getChild("Quantity");
+                            String srQuantity = rQuantityElement.getText();
+                            if (srQuantity.length() == 0) srQuantity = "0";
+                            try {
+                    	        timeRestriction.setQuantity(Integer.parseInt(srQuantity));
+                            } catch (Exception e) {
+                    	        throw new IllegalArgumentException("Invalid Restriction Quantity (" + rQuantityElement.getText() + ").", e);
+                            }
+
+                            timeRestrictionList.add(timeRestriction);
+                        }
+                    }
+                    resource.setTimeRestrictionList(timeRestrictionList);
                 }
-                /*resourceSource = new GlobalResource();
-                resourceList.add(resourceSource);
-                resourceSource.setId(resourceId);
-                resourceId++;
-                resourceSource.setRID("99999");
-                resourceSource.setCapacity(99999);*/
-                //globalResourceListSize = resourceList.size();
                 schedule.setResourceList(resourceList);
             } 
- /*
-            schedule.setResourceRequirementList(new ArrayList<>(
-                    projectListSize * 10 * 5 * resourceListSize));*/
         }
 
         private void readOperationList(Element operationListElement) throws IOException {
